@@ -1,0 +1,44 @@
+{
+    "name": "quotesun/mjolnir",
+    "description": "WordPress Utility Framework",
+    "keywords": [
+        "quotesun",
+        "mjolnir"
+    ],
+    "homepage": "https://github.com/quotesun/mjolnir",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Dorin Lazar",
+            "email": "quotesun@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "RC",
+    "require": {
+        "php": "^7.4",
+        "symfony/var-dumper": "^5.2",
+        "league/container": "^3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mjolnir\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mjolnir\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
