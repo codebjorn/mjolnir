@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class PostAndPage
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?int $p;
     private ?string $name;

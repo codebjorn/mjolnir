@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class TaxArgument
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?string $taxonomy;
     private ?string $field;

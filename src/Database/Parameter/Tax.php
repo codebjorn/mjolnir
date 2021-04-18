@@ -4,11 +4,11 @@ namespace Mjolnir\Database\Parameter;
 
 use Mjolnir\Support\Collection;
 use Mjolnir\Support\Is;
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Tax
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?string $relation;
     private ?array $arguments;

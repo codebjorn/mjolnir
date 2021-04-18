@@ -95,11 +95,11 @@ class Str
     /**
      * @param $delimiter
      * @param null $limit
-     * @return Arr
+     * @return Collection
      */
     public function explode($delimiter, $limit = null)
     {
-        return Arr::make(explode($delimiter, $this->string, $limit));
+        return Collection::make(explode($delimiter, $this->string, $limit));
     }
 
     /**

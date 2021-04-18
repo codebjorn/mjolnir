@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class DateArgument
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?int $year;
     private ?int $month;

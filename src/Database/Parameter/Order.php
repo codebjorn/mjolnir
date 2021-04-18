@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Order
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?string $order;
     private ?string $orderby;

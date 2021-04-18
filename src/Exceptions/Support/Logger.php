@@ -9,7 +9,7 @@ use Mjolnir\Support\Is;
 class Logger implements ExceptionLoggerInterface
 {
     protected string $logFile;
-    protected string $file;
+    protected $file;
     protected array $options;
 
     /**

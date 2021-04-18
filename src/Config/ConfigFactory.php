@@ -3,10 +3,9 @@
 namespace Mjolnir\Config;
 
 use Exception;
-use Mjolnir\Contracts\ArrayFactoryInterface;
 use Mjolnir\Traits\Factoryable;
 
-class ConfigFactory implements ArrayFactoryInterface
+class ConfigFactory
 {
     use Factoryable;
 

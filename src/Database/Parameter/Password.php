@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Password
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?bool $has_password;
     private ?string $post_password;

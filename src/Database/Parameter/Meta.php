@@ -4,11 +4,11 @@ namespace Mjolnir\Database\Parameter;
 
 use Mjolnir\Support\Collection;
 use Mjolnir\Support\Is;
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Meta
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?array $meta_query;
     private ?string $meta_key;

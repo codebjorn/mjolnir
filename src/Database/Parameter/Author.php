@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Author
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?int $author;
     private ?string $author_name;

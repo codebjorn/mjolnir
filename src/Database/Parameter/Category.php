@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Category
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private $cat;
     private ?string $category_name;

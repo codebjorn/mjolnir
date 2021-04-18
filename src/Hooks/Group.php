@@ -2,10 +2,11 @@
 
 namespace Mjolnir\Hooks;
 
-use Mjolnir\Exceptions\HookGroupException;
+use Mjolnir\Traits\GetContainer;
 
 class Group
 {
+    use GetContainer;
 
     private const TYPES_FUNCTIONS = [
         'action' => 'add_action',
@@ -28,31 +29,22 @@ class Group
     }
 
     /**
-     * @param $functionToAdd
+     * @param $function
      * @param int $priority
-     * @param int $acceptedArgs
+     * @param int $args
      * @return $this
-     * @throws HookGroupException
      */
-    public function add($functionToAdd, int $priority = 10, int $acceptedArgs = 1)
+    public function add($function, int $priority = 10, int $args = 1)
     {
-        $this->call($functionToAdd, $priority, $acceptedArgs);
+        $hook = new Hook($this->type, $this->tag, [
+            'function' => $function,
+            'priority' => $priority,
+            'args' => $args
+        ]);
+
+        static::container()->extend(HookRepository::class)
+            ->addMethodCall('add', [$hook]);
+
         return $this;
-    }
-
-    /**
-     * @param $functionToAdd
-     * @param int $priority
-     * @param int $acceptedArgs
-     * @throws HookGroupException
-     */
-    private function call($functionToAdd, int $priority, int $acceptedArgs)
-    {
-        if (!in_array($this->type, array_keys(self::TYPES_FUNCTIONS))) {
-            throw new HookGroupException('Given type not exits');
-        }
-        $resolvedFunction = HookResolver::resolve($functionToAdd);
-
-        call_user_func_array(self::TYPES_FUNCTIONS[$this->type], [$this->tag, $resolvedFunction, $priority, $acceptedArgs]);
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Pagination
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?int $posts_per_page;
     private ?bool $nopaging;

@@ -23,8 +23,6 @@ class Container extends LeagueContainer
     public function __construct()
     {
         parent::__construct();
-        $this->delegates = [
-            (new ReflectionContainer())->cacheResolutions()
-        ];
+        $this->delegate((new ReflectionContainer())->cacheResolutions());
     }
 }

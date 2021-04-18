@@ -1,4 +1,4 @@
-# Very short description of the package
+# Mjolnir, WordPress Utility Framework
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/quotesun/mjolnir.svg?style=flat-square)](https://packagist.org/packages/quotesun/mjolnir)
 [![Build Status](https://img.shields.io/travis/quotesun/mjolnir/master.svg?style=flat-square)](https://travis-ci.org/quotesun/mjolnir)

@@ -2,6 +2,7 @@
 
 namespace Mjolnir\Exceptions\Support;
 
+use Mjolnir\Exceptions\LoggerException;
 use Throwable;
 use Mjolnir\Contracts\ExceptionHandlerInterface;
 
@@ -13,16 +14,25 @@ class Handler implements ExceptionHandlerInterface
     /**
      * Handler constructor.
      * @param Logger $logger
+     * @throws LoggerException
      */
     public function __construct(Logger $logger)
     {
-        $this->logger = $logger;
-
+        $this->setLogger($logger);
         $this->setExceptionHandler();
     }
 
     /**
+     * @param Logger $logger
+     */
+    public function setLogger(Logger $logger): void
+    {
+        $this->logger = $logger;
+    }
+
+    /**
      * @return mixed
+     * @throws LoggerException
      */
     private function setExceptionHandler()
     {
@@ -32,6 +42,7 @@ class Handler implements ExceptionHandlerInterface
     /**
      * @param Throwable $e
      * @return mixed
+     * @throws LoggerException
      */
     private function handle(Throwable $e)
     {
@@ -51,7 +62,7 @@ class Handler implements ExceptionHandlerInterface
             <div class='message'>
                 <b>File:</b> {$this->logger->absToRelPath($e->getFile())} [<b>{$e->getLine()}</b>]:</b> {$e->getMessage()}
                  </br>
-                <b><pre>{$e->getTraceAsString()}</pre></b>
+                <b><pre style='white-space: pre-line;'>{$e->getTraceAsString()}</pre></b>
             </div>
         ";
 
@@ -61,6 +72,7 @@ class Handler implements ExceptionHandlerInterface
     /**
      * @param Throwable $e
      * @return $this
+     * @throws LoggerException
      */
     public function report(Throwable $e)
     {

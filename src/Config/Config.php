@@ -2,6 +2,6 @@
 
 namespace Mjolnir\Config;
 
-use Mjolnir\Abstracts\AbstractArr;
+use Mjolnir\Abstracts\AbstractRepository;
 
-class Config extends AbstractArr {}
+class Config extends AbstractRepository {}

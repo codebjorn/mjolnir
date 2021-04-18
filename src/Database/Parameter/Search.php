@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Search
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?string $s;
     private ?bool $exact;

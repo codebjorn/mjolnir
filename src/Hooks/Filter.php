@@ -2,49 +2,11 @@
 
 namespace Mjolnir\Hooks;
 
-use Mjolnir\Contracts\HookInterface;
-use Mjolnir\Exceptions\HookResolverException;
+use Mjolnir\Abstracts\AbstractHook;
 
-class Filter implements HookInterface
+class Filter extends AbstractHook
 {
-    /**
-     * @param string $tag
-     * @param $functionToAdd
-     * @param int $priority
-     * @param int $acceptedArgs
-     * @return Filter
-     * @throws HookResolverException
-     */
-    public static function add(string $tag, $functionToAdd, int $priority = 10, int $acceptedArgs = 1)
-    {
-        return (new static)->call($tag, $functionToAdd, $priority, $acceptedArgs);
-    }
-
-    /**
-     * @param string $tag
-     * @return Group
-     */
-    public static function group(string $tag)
-    {
-        return new Group('filter', $tag);
-    }
-
-    /**
-     * @param string $tag
-     * @param $functionToAdd
-     * @param int $priority
-     * @param int $acceptedArgs
-     * @return $this
-     * @throws HookResolverException
-     */
-    public function call(string $tag, $functionToAdd, int $priority = 10, int $acceptedArgs = 1)
-    {
-        $resolvedFunction = HookResolver::resolve($functionToAdd);
-
-        add_filter($tag, $resolvedFunction, $priority, $acceptedArgs);
-
-        return $this;
-    }
+    protected static string $type = "add_filter";
 
     /**
      * @param $tag

@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Comment
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     /**
      * @var null

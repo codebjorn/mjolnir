@@ -2,11 +2,11 @@
 
 namespace Mjolnir\Database\Parameter;
 
-use Mjolnir\Traits\QueryParameterable;
+use Mjolnir\Traits\QueryParameter;
 
 class Tag
 {
-    use QueryParameterable;
+    use QueryParameter;
 
     private ?string $tag;
     private ?int $tag_id;
