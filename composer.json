@@ -1,8 +1,8 @@
 {
-    "name": "quotesun/mjolnir",
+    "name": "codebjorn/mjolnir",
     "description": "WordPress Utility Framework",
     "keywords": [
-        "quotesun",
+        "codebjorn",
         "mjolnir"
     ],
     "homepage": "https://github.com/quotesun/mjolnir",
@@ -19,7 +19,7 @@
     "require": {
         "php": ">=7.4",
         "symfony/var-dumper": "^5.2",
-        "league/container": "^3.3"
+        "illuminate/container": "8.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0"
