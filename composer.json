@@ -17,10 +17,10 @@
     ],
     "minimum-stability": "RC",
     "require": {
-        "php": ">=7.4",
+        "php": ">=7.2",
         "symfony/var-dumper": "^5.2",
         "league/container": "^3.3",
-        "ramsey/collection": "^1.*"
+        "ramsey/collection": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0"
