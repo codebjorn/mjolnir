@@ -11,11 +11,6 @@ use Mjolnir\Providers\ExceptionServiceProvider;
 
 class App extends Container
 {
-
-    /**
-     * @var $this
-     */
-    protected static $instance;
     /**
      * @var string
      */
@@ -33,23 +28,10 @@ class App extends Container
     {
         parent::__construct();
         $this->setPath($basePath);
-        $this->setInstance();
 
         $this->addBaseShared();
         $this->addServiceProviders();
         $this->loadHooks();
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function getInstance()
-    {
-        if (is_null(static::$instance)) {
-            static::$instance = new static;
-        }
-
-        return static::$instance;
     }
 
     /**
@@ -66,14 +48,6 @@ class App extends Container
     public function setPath($path)
     {
         $this->basePath = $path ?? dirname(__DIR__);
-    }
-
-    /**
-     * @return void
-     */
-    public function setInstance()
-    {
-        static::$instance = $this;
     }
 
     /**
