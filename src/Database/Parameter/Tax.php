@@ -10,9 +10,20 @@ class Tax
 {
     use QueryParameter;
 
-    private ?string $relation;
-    private ?array $arguments;
+    /**
+     * @var string|null
+     */
+    private $relation;
+    /**
+     * @var array|null
+     */
+    private $arguments;
 
+    /**
+     * Tax constructor.
+     * @param string|null $relation
+     * @param array|null $arguments
+     */
     public function __construct(string $relation = null, array $arguments = null)
     {
         $this->relation = $relation;
@@ -22,7 +33,7 @@ class Tax
     /**
      * @return string|null
      */
-    public function getRelation(): ?string
+    public function getRelation()
     {
         return $this->relation;
     }
@@ -30,7 +41,7 @@ class Tax
     /**
      * @return array|null
      */
-    public function getArguments(): ?array
+    public function getArguments()
     {
         return $this->arguments;
     }
@@ -38,7 +49,7 @@ class Tax
     /**
      * @param string|null $relation
      */
-    public function setRelation(?string $relation): void
+    public function setRelation($relation)
     {
         $this->relation = $relation;
     }
@@ -46,18 +57,23 @@ class Tax
     /**
      * @param array|null $arguments
      */
-    public function setArguments(?array $arguments): void
+    public function setArguments($arguments)
     {
         $this->arguments = $arguments;
     }
 
-    public function toArray()
+    /**
+     * @return array[]
+     */
+    public function toArray(): array
     {
         $props = Collection::make(get_class_vars(static::class));
         $resolvedProps = $props->map(function ($item, $index) {
             if (Is::arr($this->{$index})) {
                 return Collection::make($this->{$index})
-                    ->map(fn($class) => Is::obj($class) ? $class->toArray() : $class)
+                    ->map(function ($class) {
+                        return Is::obj($class) ? $class->toArray() : $class;
+                    })
                     ->toArray();
             }
 

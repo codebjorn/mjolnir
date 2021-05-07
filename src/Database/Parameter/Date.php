@@ -10,16 +10,55 @@ class Date
 {
     use QueryParameter;
 
-    private ?array $date_query;
-    private ?int $year;
-    private ?int $monthnum;
-    private ?int $w;
-    private ?int $day;
-    private ?int $hour;
-    private ?int $minute;
-    private ?int $second;
-    private ?int $m;
+    /**
+     * @var array|null
+     */
+    private $date_query;
+    /**
+     * @var int|null
+     */
+    private $year;
+    /**
+     * @var int|null
+     */
+    private $monthnum;
+    /**
+     * @var int|null
+     */
+    private $w;
+    /**
+     * @var int|null
+     */
+    private $day;
+    /**
+     * @var int|null
+     */
+    private $hour;
+    /**
+     * @var int|null
+     */
+    private $minute;
+    /**
+     * @var int|null
+     */
+    private $second;
+    /**
+     * @var int|null
+     */
+    private $m;
 
+    /**
+     * Date constructor.
+     * @param array|null $date_query
+     * @param int|null $year
+     * @param int|null $monthnum
+     * @param int|null $w
+     * @param int|null $day
+     * @param int|null $hour
+     * @param int|null $minute
+     * @param int|null $second
+     * @param int|null $m
+     */
     public function __construct(array $date_query = null, int $year = null, int $monthnum = null, int $w = null, int $day = null, int $hour = null, int $minute = null, int $second = null, int $m = null)
     {
         $this->date_query = $date_query;
@@ -44,7 +83,7 @@ class Date
     /**
      * @param array $date_query
      */
-    public function setDateQuery(array $date_query): void
+    public function setDateQuery(array $date_query)
     {
         $this->date_query = $date_query;
     }
@@ -52,7 +91,7 @@ class Date
     /**
      * @return int|null
      */
-    public function getYear(): ?int
+    public function getYear()
     {
         return $this->year;
     }
@@ -60,7 +99,7 @@ class Date
     /**
      * @param int|null $year
      */
-    public function setYear(?int $year): void
+    public function setYear($year)
     {
         $this->year = $year;
     }
@@ -68,7 +107,7 @@ class Date
     /**
      * @return int|null
      */
-    public function getMonthnum(): ?int
+    public function getMonthnum()
     {
         return $this->monthnum;
     }
@@ -76,7 +115,7 @@ class Date
     /**
      * @param int|null $monthnum
      */
-    public function setMonthnum(?int $monthnum): void
+    public function setMonthnum($monthnum)
     {
         $this->monthnum = $monthnum;
     }
@@ -84,7 +123,7 @@ class Date
     /**
      * @return int|null
      */
-    public function getW(): ?int
+    public function getW()
     {
         return $this->w;
     }
@@ -92,7 +131,7 @@ class Date
     /**
      * @param int|null $w
      */
-    public function setW(?int $w): void
+    public function setW($w)
     {
         $this->w = $w;
     }
@@ -100,7 +139,7 @@ class Date
     /**
      * @return int|null
      */
-    public function getDay(): ?int
+    public function getDay()
     {
         return $this->day;
     }
@@ -108,7 +147,7 @@ class Date
     /**
      * @param int|null $day
      */
-    public function setDay(?int $day): void
+    public function setDay($day)
     {
         $this->day = $day;
     }
@@ -116,7 +155,7 @@ class Date
     /**
      * @return int|null
      */
-    public function getHour(): ?int
+    public function getHour()
     {
         return $this->hour;
     }
@@ -124,7 +163,7 @@ class Date
     /**
      * @param int|null $hour
      */
-    public function setHour(?int $hour): void
+    public function setHour($hour)
     {
         $this->hour = $hour;
     }
@@ -132,7 +171,7 @@ class Date
     /**
      * @return int|null
      */
-    public function getMinute(): ?int
+    public function getMinute()
     {
         return $this->minute;
     }
@@ -140,7 +179,7 @@ class Date
     /**
      * @param int|null $minute
      */
-    public function setMinute(?int $minute): void
+    public function setMinute($minute)
     {
         $this->minute = $minute;
     }
@@ -148,7 +187,7 @@ class Date
     /**
      * @return int|null
      */
-    public function getSecond(): ?int
+    public function getSecond()
     {
         return $this->second;
     }
@@ -156,7 +195,7 @@ class Date
     /**
      * @param int|null $second
      */
-    public function setSecond(?int $second): void
+    public function setSecond($second)
     {
         $this->second = $second;
     }
@@ -164,7 +203,7 @@ class Date
     /**
      * @return int|null
      */
-    public function getM(): ?int
+    public function getM()
     {
         return $this->m;
     }
@@ -172,25 +211,32 @@ class Date
     /**
      * @param int|null $m
      */
-    public function setM(?int $m): void
+    public function setM($m)
     {
         $this->m = $m;
     }
 
-    public function toArray()
+    /**
+     * @return array
+     */
+    public function toArray(): array
     {
         $props = Collection::make(get_class_vars(static::class));
         $resolvedProps = $props->map(function ($item, $index) {
             if ($index === "date_query") {
                 return Collection::make($this->{$index} ?? [])
-                    ->map(fn($class) => Is::obj($class) ? $class->toArray() : $class)
+                    ->map(function ($class) {
+                        return Is::obj($class) ? $class->toArray() : $class;
+                    })
                     ->toArray();
             }
 
             return $this->{$index};
         });
 
-        return $resolvedProps->filter(fn($item) => $item !== null)
+        return $resolvedProps->filter(function ($item) {
+            return $item !== null;
+        })
             ->toArray();
     }
 }

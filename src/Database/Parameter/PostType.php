@@ -8,9 +8,16 @@ class PostType
 {
     use QueryParameter;
 
+    /**
+     * @var string|null
+     */
     private $post_type;
 
-    public function __construct($post_type = null)
+    /**
+     * PostType constructor.
+     * @param string|null $post_type
+     */
+    public function __construct(string $post_type = null)
     {
         $this->post_type = $post_type;
     }

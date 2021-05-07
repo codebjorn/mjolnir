@@ -2,39 +2,47 @@
 
 namespace Mjolnir;
 
-use Mjolnir\Config\ConfigLoader;
-use Mjolnir\Container\Container;
-use Mjolnir\Container\ContainerLoader;
-use Mjolnir\Contracts\AppInterface;
-use Mjolnir\Exceptions\Support\ExceptionLoader;
+use League\Container\Container;
+use Mjolnir\Container\ContainerResolver;
 use Mjolnir\Hooks\HookLoader;
-use Psr\Container\ContainerInterface;
+use Mjolnir\Hooks\HookRepository;
+use Mjolnir\Providers\ConfigServiceProvider;
+use Mjolnir\Providers\ExceptionServiceProvider;
 
-class App implements AppInterface
+class App extends Container
 {
+
+    /**
+     * @var $this
+     */
     protected static $instance;
-    protected ContainerInterface $container;
-    protected string $path;
-    protected array $loaders = [
-        ExceptionLoader::class,
-        ConfigLoader::class,
-        ContainerLoader::class,
-        HookLoader::class
-    ];
+    /**
+     * @var string
+     */
+    protected $resolver = ContainerResolver::class;
+    /**
+     * @var string|null
+     */
+    protected $basePath;
 
-    public function __construct(string $path = null)
+    /**
+     * App constructor.
+     * @param null $basePath
+     */
+    public function __construct($basePath = null)
     {
-        $this->setInstance($this);
-        $this->setPath($path);
-        $this->setContainer();
-        $this->load();
+        parent::__construct();
+        $this->setPath($basePath);
+        $this->setInstance();
+
+        $this->addBaseShared();
+        $this->addServiceProviders();
+        $this->loadHooks();
     }
 
-    public static function boot(string $path = null)
-    {
-        return new static($path);
-    }
-
+    /**
+     * @return mixed
+     */
     public static function getInstance()
     {
         if (is_null(static::$instance)) {
@@ -44,37 +52,62 @@ class App implements AppInterface
         return static::$instance;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPath()
     {
-        return $this->path;
+        return $this->basePath;
     }
 
-    public function getContainer(): Container
+    /**
+     * @param $path
+     */
+    public function setPath($path)
     {
-        return $this->container;
+        $this->basePath = $path ?? dirname(__DIR__);
     }
 
-    public function setPath(?string $path)
+    /**
+     * @return void
+     */
+    public function setInstance()
     {
-        $this->path = $path ?? dirname(__DIR__);
+        static::$instance = $this;
     }
 
-    public function setContainer()
+    /**
+     * @return void
+     */
+    private function addBaseShared()
     {
-        $this->container = new Container();
+        $this->share('resolver', ContainerResolver::class)
+            ->addArguments(['container' => $this]);
+        $this->share('hooks', HookRepository::class);
     }
 
-    public function setInstance(AppInterface $app = null)
+    /**
+     * @return void
+     */
+    private function addServiceProviders()
     {
-        return static::$instance = $app;
-    }
+        $this->addServiceProvider(ConfigServiceProvider::class);
+        $this->addServiceProvider(ExceptionServiceProvider::class);
 
-    public function load()
-    {
-        foreach ($this->loaders as $loader) {
-            call_user_func([$loader, 'load'], $this);
+        $providers = $this->get('config.app')->get('providers');
+        if ($providers) {
+            foreach ($providers as $provider) {
+                $this->addServiceProvider($provider);
+            }
         }
     }
 
+    /**
+     * @return void
+     */
+    private function loadHooks()
+    {
+        HookLoader::load($this);
+    }
 
 }

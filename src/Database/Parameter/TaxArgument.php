@@ -8,16 +8,36 @@ class TaxArgument
 {
     use QueryParameter;
 
-    private ?string $taxonomy;
-    private ?string $field;
+    /**
+     * @var string|null
+     */
+    private $taxonomy;
+    /**
+     * @var string|null
+     */
+    private $field;
     /**
      * @var int|array|string
      */
     private $terms;
-    private bool $include_children;
-    private ?string $operator;
+    /**
+     * @var
+     */
+    private $include_children;
+    /**
+     * @var string|null
+     */
+    private $operator;
 
-    public function __construct(string $taxonomy = null, string $field = null, $terms = null, bool $include_children = true, string $operator = null)
+    /**
+     * TaxArgument constructor.
+     * @param string|null $taxonomy
+     * @param string|null $field
+     * @param null $terms
+     * @param $include_children
+     * @param string|null $operator
+     */
+    public function __construct(string $taxonomy = null, string $field = null, $terms = null, $include_children = true, string $operator = null)
     {
         $this->taxonomy = $taxonomy;
         $this->field = $field;
@@ -29,7 +49,7 @@ class TaxArgument
     /**
      * @return string|null
      */
-    public function getTaxonomy(): ?string
+    public function getTaxonomy()
     {
         return $this->taxonomy;
     }
@@ -37,7 +57,7 @@ class TaxArgument
     /**
      * @return string|null
      */
-    public function getField(): ?string
+    public function getField()
     {
         return $this->field;
     }
@@ -51,9 +71,9 @@ class TaxArgument
     }
 
     /**
-     * @return bool
+     * @return
      */
-    public function isIncludeChildren(): bool
+    public function isIncludeChildren()
     {
         return $this->include_children;
     }
@@ -61,7 +81,7 @@ class TaxArgument
     /**
      * @return string|null
      */
-    public function getOperator(): ?string
+    public function getOperator()
     {
         return $this->operator;
     }
@@ -69,7 +89,7 @@ class TaxArgument
     /**
      * @param string|null $taxonomy
      */
-    public function setTaxonomy(?string $taxonomy): void
+    public function setTaxonomy($taxonomy)
     {
         $this->taxonomy = $taxonomy;
     }
@@ -77,7 +97,7 @@ class TaxArgument
     /**
      * @param string|null $field
      */
-    public function setField(?string $field): void
+    public function setField($field)
     {
         $this->field = $field;
     }
@@ -85,15 +105,15 @@ class TaxArgument
     /**
      * @param array|int|string $terms
      */
-    public function setTerms($terms): void
+    public function setTerms($terms)
     {
         $this->terms = $terms;
     }
 
     /**
-     * @param bool $include_children
+     * @param $include_children
      */
-    public function setIncludeChildren(bool $include_children): void
+    public function setIncludeChildren($include_children)
     {
         $this->include_children = $include_children;
     }
@@ -101,7 +121,7 @@ class TaxArgument
     /**
      * @param string|null $operator
      */
-    public function setOperator(?string $operator): void
+    public function setOperator($operator)
     {
         $this->operator = $operator;
     }

@@ -9,7 +9,7 @@ class Template
      * @param array $templates
      * @return string
      */
-    public static function get(string $type, array $templates = [])
+    public static function get(string $type, array $templates = []): string
     {
         return get_query_template($type, $templates);
     }
@@ -21,7 +21,7 @@ class Template
      * @param array $args
      * @return string
      */
-    public static function locate($templateNames, $load = false, bool $requireOnce = true, $args = array())
+    public static function locate($templateNames, bool $load = false, bool $requireOnce = true, array $args = []): string
     {
         return locate_template($templateNames, $load, $requireOnce, $args);
     }

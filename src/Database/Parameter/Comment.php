@@ -29,7 +29,7 @@ class Comment
     /**
      * @param null $comment_count
      */
-    public function setCommentCount($comment_count): void
+    public function setCommentCount($comment_count)
     {
         $this->comment_count = $comment_count;
     }

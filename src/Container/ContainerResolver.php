@@ -2,34 +2,41 @@
 
 namespace Mjolnir\Container;
 
+use Mjolnir\App;
 use Mjolnir\Exceptions\ContainerResolverException;
 use Mjolnir\Support\Is;
-use Mjolnir\Traits\GetContainer;
-use Psr\Container\ContainerInterface;
 
 class ContainerResolver
 {
-    use GetContainer;
-
+    /**
+     * @var App
+     */
+    protected $container;
+    /**
+     * @var mixed|string
+     */
     private $function;
 
     /**
      * ContainerResolver constructor.
+     * @param $container
      * @param $function
      */
-    public function __construct($function)
+    public function __construct($container, $function = null)
     {
-        $this->function = $function;
+        $this->container = $container;
+        $this->function = $function ?? "";
     }
 
     /**
-     * @param $function
-     * @return array|mixed|object
+     * @param mixed $function
+     * @return callable
      * @throws ContainerResolverException
      */
-    public static function resolve($function)
+    public function resolve($function): callable
     {
-        return (new static($function))->return();
+        return (new static($this->container, $function))
+            ->return();
     }
 
     /**
@@ -63,11 +70,11 @@ class ContainerResolver
             return $this->function;
         }
 
-        if (!static::container()->has($this->function['0'])) {
+        if (!$this->container->has($this->function['0'])) {
             throw new ContainerResolverException('Class or method applied to hook not exists');
         }
 
-        return [static::container()->get($this->function['0']), $this->function['1']];
+        return [$this->container->get($this->function['0']), $this->function['1']];
     }
 
     /**
@@ -85,10 +92,10 @@ class ContainerResolver
     private function invoke()
     {
         if (!class_exists($this->function) ||
-            !static::container()->has($this->function)) {
+            !$this->container->has($this->function)) {
             throw new ContainerResolverException('Class or method applied to hook not exists');
         }
 
-        return static::container()->get($this->function);
+        return $this->container->get($this->function);
     }
 }

@@ -2,28 +2,21 @@
 
 namespace Mjolnir\Hooks;
 
-use Mjolnir\Traits\GetContainer;
-
 class Group
 {
-    use GetContainer;
-
-    private const TYPES_FUNCTIONS = [
-        'action' => 'add_action',
-        'filter' => 'add_filter',
-        'shortcode' => 'add_shortcode'
-    ];
-
-    private string $type;
-    private string $tag;
+    private $containerClass;
+    private $type;
+    private $tag;
 
     /**
      * Group constructor.
+     * @param string $containerClass
      * @param string $type
      * @param string $tag
      */
-    public function __construct(string $type, string $tag)
+    public function __construct(string $containerClass, string $type, string $tag)
     {
+        $this->containerClass = $containerClass;
         $this->type = $type;
         $this->tag = $tag;
     }
@@ -34,7 +27,7 @@ class Group
      * @param int $args
      * @return $this
      */
-    public function add($function, int $priority = 10, int $args = 1)
+    public function add($function, int $priority = 10, int $args = 1): Group
     {
         $hook = new Hook($this->type, $this->tag, [
             'function' => $function,
@@ -42,7 +35,8 @@ class Group
             'args' => $args
         ]);
 
-        static::container()->extend(HookRepository::class)
+        $container = call_user_func([$this->containerClass, 'getInstance']);
+        $container->extend('hooks')
             ->addMethodCall('add', [$hook]);
 
         return $this;

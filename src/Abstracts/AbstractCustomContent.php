@@ -4,8 +4,8 @@ namespace Mjolnir\Abstracts;
 
 abstract class AbstractCustomContent
 {
-    protected string $name;
-    protected array $arguments;
+    protected $name;
+    protected $arguments;
 
     /**
      * @param string $name

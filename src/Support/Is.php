@@ -2,14 +2,17 @@
 
 namespace Mjolnir\Support;
 
+use Mjolnir\Traits\Macroable;
+
 class Is
 {
+    use Macroable;
 
     /**
      * @param $value
      * @return bool
      */
-    public static function int($value)
+    public static function int($value): bool
     {
         if (!\is_int($value)) {
             return false;
@@ -22,7 +25,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function float($value)
+    public static function float($value): bool
     {
         if (!\is_float($value)) {
             return false;
@@ -35,7 +38,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function numeric($value)
+    public static function numeric($value): bool
     {
         if (!\is_numeric($value)) {
             return false;
@@ -48,7 +51,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function bool($value)
+    public static function bool($value): bool
     {
         if (!\is_bool($value)) {
             return false;
@@ -61,7 +64,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function str($value)
+    public static function str($value): bool
     {
         if (!\is_string($value)) {
             return false;
@@ -74,7 +77,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function arr($value)
+    public static function arr($value): bool
     {
         if (!\is_array($value)) {
             return false;
@@ -87,7 +90,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function obj($value)
+    public static function obj($value): bool
     {
         if (!\is_object($value)) {
             return false;
@@ -100,7 +103,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function res($value)
+    public static function res($value): bool
     {
         if (!\is_resource($value)) {
             return false;
@@ -113,7 +116,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function callable($value)
+    public static function callable($value): bool
     {
         if (!\is_callable($value)) {
             return false;
@@ -126,7 +129,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function scalar($value)
+    public static function scalar($value): bool
     {
         if (!\is_scalar($value)) {
             return false;
@@ -139,7 +142,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function null($value)
+    public static function null($value): bool
     {
         if (!\is_null($value)) {
             return false;
@@ -152,7 +155,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function dir($value)
+    public static function dir($value): bool
     {
         if (!\is_dir($value)) {
             return false;
@@ -165,7 +168,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function file($value)
+    public static function file($value): bool
     {
         if (!\is_file($value)) {
             return false;
@@ -178,7 +181,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function readable($value)
+    public static function readable($value): bool
     {
         if (!\is_readable($value)) {
             return false;
@@ -191,7 +194,7 @@ class Is
      * @param $value
      * @return bool
      */
-    public static function writable($value)
+    public static function writable($value): bool
     {
         if (!\is_writable($value)) {
             return false;

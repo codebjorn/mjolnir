@@ -9,15 +9,15 @@ class ConfigFactory
 {
     use Factoryable;
 
-    private string $path;
-    private array $instances = [];
+    private $path;
+    private $instances = [];
 
     /**
      * @param array|null $parameters
      * @return ConfigFactory
      * @throws Exception
      */
-    public static function make(array $parameters = null)
+    public static function make(array $parameters = null): ConfigFactory
     {
         $static = new static($parameters);
         return $static->buildInstances();
@@ -26,7 +26,7 @@ class ConfigFactory
     /**
      * @return array
      */
-    public function getInstances()
+    public function getInstances(): array
     {
         return $this->instances;
     }
@@ -49,7 +49,7 @@ class ConfigFactory
      * @param $value
      * @return $this
      */
-    public function setInstance(string $identifier, $value)
+    public function setInstance(string $identifier, $value): ConfigFactory
     {
         if (!$this->hasInstance($identifier)) {
             $this->instances[$identifier] = new ConfigFactory($value);
@@ -62,7 +62,7 @@ class ConfigFactory
      * @return $this
      * @throws Exception
      */
-    public function buildInstances()
+    public function buildInstances(): ConfigFactory
     {
         foreach ($this->dirFiles() as $file) {
             $configName = pathinfo($file, PATHINFO_FILENAME);
@@ -84,7 +84,7 @@ class ConfigFactory
      * @param string $identifier
      * @return bool
      */
-    public function hasInstance(string $identifier)
+    public function hasInstance(string $identifier): bool
     {
         return array_key_exists($identifier, $this->instances);
     }

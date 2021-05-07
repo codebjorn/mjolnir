@@ -8,11 +8,30 @@ class Author
 {
     use QueryParameter;
 
-    private ?int $author;
-    private ?string $author_name;
-    private ?array $author__in;
-    private ?array $author__not_in;
+    /**
+     * @var int|null
+     */
+    private $author;
+    /**
+     * @var string|null
+     */
+    private $author_name;
+    /**
+     * @var array|null
+     */
+    private $author__in;
+    /**
+     * @var array|null
+     */
+    private $author__not_in;
 
+    /**
+     * Author constructor.
+     * @param int|null $author
+     * @param string|null $author_name
+     * @param array|null $author__in
+     * @param array|null $author__not_in
+     */
     public function __construct(int $author = null, string $author_name = null, array $author__in = null, array $author__not_in = null)
     {
         $this->author = $author;
@@ -24,7 +43,7 @@ class Author
     /**
      * @return int|null
      */
-    public function getAuthor(): ?int
+    public function getAuthor()
     {
         return $this->author;
     }
@@ -32,7 +51,7 @@ class Author
     /**
      * @return string|null
      */
-    public function getName(): ?string
+    public function getName()
     {
         return $this->author_name;
     }
@@ -40,7 +59,7 @@ class Author
     /**
      * @return array|null
      */
-    public function getIn(): ?array
+    public function getIn()
     {
         return $this->author__in;
     }
@@ -48,7 +67,7 @@ class Author
     /**
      * @return array|null
      */
-    public function getNotIn(): ?array
+    public function getNotIn()
     {
         return $this->author__not_in;
     }
@@ -56,7 +75,7 @@ class Author
     /**
      * @param int|null $author
      */
-    public function setAuthor(?int $author): void
+    public function setAuthor($author)
     {
         $this->author = $author;
     }
@@ -64,7 +83,7 @@ class Author
     /**
      * @param string|null $author_name
      */
-    public function setName(?string $author_name): void
+    public function setName($author_name)
     {
         $this->author_name = $author_name;
     }
@@ -72,7 +91,7 @@ class Author
     /**
      * @param array|null $author__in
      */
-    public function setIn(?array $author__in): void
+    public function setIn($author__in)
     {
         $this->author__in = $author__in;
     }
@@ -80,7 +99,7 @@ class Author
     /**
      * @param array|null $author__not_in
      */
-    public function setNotIn(?array $author__not_in): void
+    public function setNotIn($author__not_in)
     {
         $this->author__not_in = $author__not_in;
     }

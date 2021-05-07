@@ -21,7 +21,7 @@ class PostType extends AbstractCustomContent
     }
 
     /**
-     * @return mixed|void
+     * @return void
      */
     public function register()
     {
@@ -32,7 +32,7 @@ class PostType extends AbstractCustomContent
      * @param string $label
      * @return $this
      */
-    public function label(string $label)
+    public function label(string $label): PostType
     {
         $this->setArgument('label', $label);
         return $this;
@@ -42,7 +42,7 @@ class PostType extends AbstractCustomContent
      * @param int $position
      * @return $this
      */
-    public function menuPosition(int $position = 5)
+    public function menuPosition(int $position = 5): PostType
     {
         $this->setArgument('menu_position', $position);
         return $this;
@@ -52,7 +52,7 @@ class PostType extends AbstractCustomContent
      * @param string $icon
      * @return $this
      */
-    public function menuIcon(string $icon)
+    public function menuIcon(string $icon): PostType
     {
         $this->setArgument('icon', $icon);
         return $this;
@@ -62,7 +62,7 @@ class PostType extends AbstractCustomContent
      * @param array|string[] $supports
      * @return $this
      */
-    public function supports(array $supports = ['title'])
+    public function supports(array $supports = ['title']): PostType
     {
         $this->setArgument('supports', $supports);
         return $this;
@@ -72,7 +72,7 @@ class PostType extends AbstractCustomContent
      * @param callable $callback
      * @return $this
      */
-    public function registerMetabox(callable $callback)
+    public function registerMetabox(callable $callback): PostType
     {
         $this->setArgument('register_meta_box_cb', $callback);
         return $this;
@@ -82,7 +82,7 @@ class PostType extends AbstractCustomContent
      * @param array $taxonomies
      * @return $this
      */
-    public function taxonomies(array $taxonomies)
+    public function taxonomies(array $taxonomies): PostType
     {
         $this->setArgument('taxonomies', $taxonomies);
         return $this;
@@ -92,7 +92,7 @@ class PostType extends AbstractCustomContent
      * @param bool $hasArchive
      * @return $this
      */
-    public function hasArchive(bool $hasArchive = true)
+    public function hasArchive(bool $hasArchive = true): PostType
     {
         $this->setArgument('has_archive', $hasArchive);
         return $this;

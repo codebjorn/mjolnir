@@ -18,7 +18,7 @@ class ThemeMod
      * @param false $default
      * @return mixed
      */
-    public function get(string $name, $default = false)
+    public function get(string $name, bool $default = false)
     {
         return get_theme_mod($name, $default);
     }
@@ -32,9 +32,6 @@ class ThemeMod
         set_theme_mod($name, $value);
     }
 
-    /**
-     *
-     */
     public function removeAll()
     {
         remove_theme_mods();

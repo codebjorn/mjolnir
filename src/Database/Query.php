@@ -37,13 +37,13 @@ class Query extends AbstractQuery
     /**
      * @return Collection
      */
-    public function get()
+    public function get(): Collection
     {
         return new Collection($this->make()->get_posts());
     }
 
     /**
-     * @return int[]|mixed|WP_Post[]
+     * @return int[]|WP_Post[]
      */
     public function getRaw()
     {
@@ -51,7 +51,7 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Author $author
+     * @param null|Author|string $author
      * @param string|null $author_name
      * @param array|null $author__in
      * @param array|null $author__not_in
@@ -65,7 +65,7 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Category $cat
+     * @param null|Category|string $cat
      * @param string|null $category_name
      * @param array|null $category__and
      * @param array|null $category__in
@@ -80,7 +80,7 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Tag $tag
+     * @param null|Tag|string $tag
      * @param int|null $tag_id
      * @param array|null $tag__and
      * @param array|null $tag__in
@@ -97,12 +97,12 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Tax $relation
+     * @param null|Tax|string $relation
      * @param array|null $arguments
      * @return $this
      * @throws ReflectionException
      */
-    public function tax($relation = null, array $arguments = null)
+    public function tax($relation = null, array $arguments = null): Query
     {
         $this->updateArgs(Tax::class, $relation, $arguments);
 
@@ -110,7 +110,7 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|PostAndPage $p
+     * @param null|PostAndPage|string $p
      * @param string|null $name
      * @param string|null $title
      * @param int|null $page_id
@@ -124,7 +124,7 @@ class Query extends AbstractQuery
      * @return $this
      * @throws ReflectionException
      */
-    public function postAndPage($p = null, string $name = null, string $title = null, int $page_id = null, string $pagename = null, array $post_name__in = null, array $post_parent = null, array $post_parent__in = null, array $post_parent__not_in = null, array $post__in = null, array $post__not_in = null)
+    public function postAndPage($p = null, string $name = null, string $title = null, int $page_id = null, string $pagename = null, array $post_name__in = null, array $post_parent = null, array $post_parent__in = null, array $post_parent__not_in = null, array $post__in = null, array $post__not_in = null): Query
     {
         $this->updateArgs(PostAndPage::class, $p, $name, $title, $page_id, $pagename, $post_name__in, $post_parent, $post_parent__in, $post_parent__not_in, $post__in, $post__not_in);
 
@@ -132,12 +132,12 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Password $has_password
+     * @param null|Password|bool|string $has_password
      * @param string|null $post_password
      * @return $this
      * @throws ReflectionException
      */
-    public function password($has_password = null, string $post_password = null)
+    public function password($has_password = null, string $post_password = null): Query
     {
         $this->updateArgs(Password::class, $has_password, $has_password);
 
@@ -145,11 +145,11 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|PostType $post_type
+     * @param null|PostType|string $post_type
      * @return $this
      * @throws ReflectionException
      */
-    public function postType($post_type = null)
+    public function postType($post_type = null): Query
     {
         $this->updateArgs(PostType::class, $post_type);
 
@@ -157,11 +157,11 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|PostStatus $post_status
+     * @param null|PostStatus|mixed $post_status
      * @return $this
      * @throws ReflectionException
      */
-    public function postStatus($post_status = null)
+    public function postStatus($post_status = null): Query
     {
         $this->updateArgs(PostStatus::class, $post_status);
 
@@ -169,11 +169,11 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Comment $comment_count
+     * @param null|Comment|mixed $comment_count
      * @return $this
      * @throws ReflectionException
      */
-    public function comment($comment_count = null)
+    public function comment($comment_count = null): Query
     {
         $this->updateArgs(Comment::class, $comment_count);
 
@@ -181,7 +181,7 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Pagination $posts_per_page
+     * @param null|Pagination|string $posts_per_page
      * @param bool|null $nopaging
      * @param int|null $paged
      * @param int|null $posts_per_archive_page
@@ -191,7 +191,7 @@ class Query extends AbstractQuery
      * @return $this
      * @throws ReflectionException
      */
-    public function pagination($posts_per_page = null, bool $nopaging = null, int $paged = null, int $posts_per_archive_page = null, int $offset = null, int $page = null, bool $ignore_sticky_posts = null)
+    public function pagination($posts_per_page = null, bool $nopaging = null, int $paged = null, int $posts_per_archive_page = null, int $offset = null, int $page = null, bool $ignore_sticky_posts = null): Query
     {
         $this->updateArgs(Pagination::class, $posts_per_page, $nopaging, $paged, $posts_per_archive_page, $offset, $page, $ignore_sticky_posts);
 
@@ -199,19 +199,19 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Order $order
+     * @param null|Order|string $order
      * @param string|null $orderby
      * @return $this
      * @throws ReflectionException
      */
-    public function order($order = null, string $orderby = null)
+    public function order($order = null, string $orderby = null): Query
     {
         $this->updateArgs(Order::class, $order, $orderby);
         return $this;
     }
 
     /**
-     * @param Date $date_query
+     * @param Date|null|array $date_query
      * @param int|null $year
      * @param int|null $monthnum
      * @param int|null $w
@@ -223,7 +223,7 @@ class Query extends AbstractQuery
      * @return $this
      * @throws ReflectionException
      */
-    public function date($date_query, int $year = null, int $monthnum = null, int $w = null, int $day = null, int $hour = null, int $minute = null, int $second = null, int $m = null)
+    public function date($date_query, int $year = null, int $monthnum = null, int $w = null, int $day = null, int $hour = null, int $minute = null, int $second = null, int $m = null): Query
     {
         $this->updateArgs(Date::class, $date_query, $year, $monthnum, $w, $day, $hour, $minute, $second, $m);
 
@@ -231,7 +231,7 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param Meta $meta_query
+     * @param Meta|null|array $meta_query
      * @param string|null $meta_key
      * @param string|null $meta_value
      * @param string|null $meta_value_num
@@ -239,7 +239,7 @@ class Query extends AbstractQuery
      * @return $this
      * @throws ReflectionException
      */
-    public function meta($meta_query, string $meta_key = null, string $meta_value = null, string $meta_value_num = null, string $meta_compare = null)
+    public function meta($meta_query, string $meta_key = null, string $meta_value = null, string $meta_value_num = null, string $meta_compare = null): Query
     {
         $this->updateArgs(Meta::class, $meta_query, $meta_key, $meta_value, $meta_value_num, $meta_compare);
 
@@ -247,13 +247,13 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Search $s
+     * @param null|Search|string $s
      * @param bool|null $exact
      * @param bool|null $sentence
      * @return $this
      * @throws ReflectionException
      */
-    public function search($s = null, bool $exact = null, bool $sentence = null)
+    public function search($s = null, bool $exact = null, bool $sentence = null): Query
     {
         $this->updateArgs(Search::class, $s, $exact, $sentence);
 
@@ -261,11 +261,11 @@ class Query extends AbstractQuery
     }
 
     /**
-     * @param null|Fields $fields
+     * @param null|Fields|array $fields
      * @return $this
      * @throws ReflectionException
      */
-    public function fields($fields = null)
+    public function fields($fields = null): Query
     {
         $this->updateArgs(Fields::class, $fields);
         return $this;

@@ -6,7 +6,7 @@ use Mjolnir\Abstracts\AbstractCustomContent;
 
 class Taxonomy extends AbstractCustomContent
 {
-    private array $postTypes = [];
+    private $postTypes = [];
 
     /**
      * @param string $name
@@ -35,7 +35,7 @@ class Taxonomy extends AbstractCustomContent
     }
 
     /**
-     * @return mixed|void
+     * @return void
      */
     public function register()
     {
@@ -56,7 +56,7 @@ class Taxonomy extends AbstractCustomContent
      * @param bool $show
      * @return $this
      */
-    public function showTagcloud(bool $show = true)
+    public function showTagCloud(bool $show = true): Taxonomy
     {
         $this->setArgument('show_tagcloud', $show);
         return $this;
@@ -66,7 +66,7 @@ class Taxonomy extends AbstractCustomContent
      * @param bool $show
      * @return $this
      */
-    public function showInQuickEdit(bool $show = true)
+    public function showInQuickEdit(bool $show = true): Taxonomy
     {
         $this->setArgument('show_in_quick_edit', $show);
         return $this;
@@ -76,7 +76,7 @@ class Taxonomy extends AbstractCustomContent
      * @param bool $show
      * @return $this
      */
-    public function showAdminColumn(bool $show = false)
+    public function showAdminColumn(bool $show = false): Taxonomy
     {
         $this->setArgument('show_admin_column', $show);
         return $this;
@@ -86,7 +86,7 @@ class Taxonomy extends AbstractCustomContent
      * @param $metabox
      * @return $this
      */
-    public function metabox($metabox)
+    public function metabox($metabox): Taxonomy
     {
         $this->setArgument('meta_box_cb', $metabox);
         return $this;
@@ -96,7 +96,7 @@ class Taxonomy extends AbstractCustomContent
      * @param $metabox
      * @return $this
      */
-    public function metaboxSanitize($metabox)
+    public function metaboxSanitize($metabox): Taxonomy
     {
         $this->setArgument('meta_box_sanitize_cb', $metabox);
         return $this;
@@ -106,7 +106,7 @@ class Taxonomy extends AbstractCustomContent
      * @param array $capabilities
      * @return $this
      */
-    public function capabilities(array $capabilities)
+    public function capabilities(array $capabilities): Taxonomy
     {
         $this->setArgument('capabilities', $capabilities);
         return $this;
@@ -116,7 +116,7 @@ class Taxonomy extends AbstractCustomContent
      * @param $term
      * @return $this
      */
-    public function defaultTerm($term)
+    public function defaultTerm($term): Taxonomy
     {
         $this->setArgument('default_term', $term);
         return $this;

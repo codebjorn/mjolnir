@@ -9,7 +9,7 @@ class Option
      * @param false $default
      * @return false|mixed|void
      */
-    public static function get(string $option, $default = false)
+    public static function get(string $option, bool $default = false)
     {
         return get_option($option, $default);
     }
@@ -20,7 +20,7 @@ class Option
      * @param null $autoload
      * @return bool
      */
-    public static function update(string $option, $value, $autoload = null)
+    public static function update(string $option, $value, $autoload = null): bool
     {
         return update_option($option, $value, $autoload);
     }
@@ -30,7 +30,7 @@ class Option
      * @param string $value
      * @return bool
      */
-    public static function add(string $option, $value = '')
+    public static function add(string $option, string $value = '')
     {
         return add_option($option, $value);
     }
@@ -39,7 +39,7 @@ class Option
      * @param string $option
      * @return bool
      */
-    public static function delete(string $option)
+    public static function delete(string $option): bool
     {
         return delete_option($option);
     }
@@ -50,7 +50,7 @@ class Option
      * @param false $default
      * @return false|mixed
      */
-    public static function getNetwork(int $networkId, string $option, $default = false)
+    public static function getNetwork(int $networkId, string $option, bool $default = false)
     {
         return get_network_option($networkId, $option, $default);
     }
@@ -61,7 +61,7 @@ class Option
      * @param string $value
      * @return bool
      */
-    public static function updateNetwork(int $networkId, string $option, $value = '')
+    public static function updateNetwork(int $networkId, string $option, string $value = ''): bool
     {
         return update_network_option($networkId, $option, $value);
     }
@@ -72,7 +72,7 @@ class Option
      * @param string $value
      * @return bool
      */
-    public static function addNetwork(int $networkId, string $option, $value = '')
+    public static function addNetwork(int $networkId, string $option, string $value = ''): bool
     {
         return add_network_option($networkId, $option, $value);
     }
@@ -82,7 +82,7 @@ class Option
      * @param string $option
      * @return bool
      */
-    public static function deleteNetwork(int $networkId, string $option)
+    public static function deleteNetwork(int $networkId, string $option): bool
     {
         return delete_network_option($networkId, $option);
     }

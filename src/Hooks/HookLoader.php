@@ -2,57 +2,31 @@
 
 namespace Mjolnir\Hooks;
 
-use Mjolnir\Container\ContainerResolver;
-use Mjolnir\Contracts\AppInterface;
-use Mjolnir\Contracts\LoaderInterface;
-use Mjolnir\Exceptions\ContainerResolverException;
-
-class HookLoader implements LoaderInterface
+class HookLoader
 {
-    private const HOOKS = ['actions', 'filters', 'shortcodes'];
+    const HOOKS = ['actions', 'filters'];
+    private $container;
 
-    private AppInterface $app;
-
-    /**
-     * HookLoader constructor.
-     * @param AppInterface $app
-     * @throws ContainerResolverException
-     */
-    public function __construct(AppInterface $app)
+    public function __construct($container)
     {
-        $this->setApp($app);
-        $this->addRepository();
+        $this->setContainer($container);
         $this->requireFiles();
         $this->enableHooks();
     }
 
-    /**
-     * @param AppInterface $app
-     * @return static
-     * @throws ContainerResolverException
-     */
-    public static function load(AppInterface $app)
+    public static function load($container)
     {
-        return new static($app);
+        return new static($container);
     }
 
-    /**
-     * @param $app
-     */
-    public function setApp($app): void
+    public function setContainer($container)
     {
-        $this->app = $app;
-    }
-
-    private function addRepository()
-    {
-        $this->app->getContainer()->add(HookRepository::class);
+        $this->container = $container;
     }
 
     private function requireFiles()
     {
-        $path = $this->app->getPath();
-
+        $path = $this->container->getPath();
         foreach (self::HOOKS as $hook) {
             $require = "{$path}/hooks/{$hook}.php";
             if (file_exists($require)) {
@@ -61,21 +35,18 @@ class HookLoader implements LoaderInterface
         }
     }
 
-    /**
-     * @throws ContainerResolverException
-     */
     private function enableHooks()
     {
-        $hooks = HookRepository::__instance()->get();
+        $hooks = $this->container->get('hooks');
+        $resolver = $this->container->get('resolver', true);
 
         foreach ($hooks as $hook) {
             $hookName = $hook->getName();
             $params = $hook->getArguments();
             $params['tag'] = $hook->getTag();
-            $params['function'] = ContainerResolver::resolve($params['function']);
+            $params['function'] = $resolver->resolve($params['function']);
 
             call_user_func_array($hookName, [$params['tag'], $params['function'], $params['priority'], $params['args']]);
         }
     }
-
 }

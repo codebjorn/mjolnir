@@ -2,37 +2,72 @@
 
 namespace Mjolnir\Abstracts;
 
-use Mjolnir\Traits\Instantiable;
+use ArrayIterator;
+use IteratorAggregate;
+use Mjolnir\Support\Collection;
 
-abstract class AbstractRepository
+abstract class AbstractRepository implements IteratorAggregate
 {
-    use Instantiable;
+    /**
+     * @var array|mixed
+     */
+    private $items;
 
-    private array $storage;
-
-    public function __construct($storage = [])
+    /**
+     * AbstractRepository constructor.
+     * @param array $items
+     */
+    public function __construct(array $items = [])
     {
-        $this->storage = $storage;
+        $this->items = $items;
     }
 
-    public function get(): array
+    /**
+     * @return array
+     */
+    public function all(): array
     {
-        return $this->storage;
+        return $this->items;
     }
 
-    public function getKey(string $key)
+    /**
+     * @return Collection
+     */
+    public function collection(): Collection
     {
-        return $this->storage[$key] ?? false;
+        return new Collection($this->items);
     }
 
-
-    public function add($element): void
+    /**
+     * @param string $key
+     * @return false|mixed
+     */
+    public function get(string $key)
     {
-        $this->storage[] = $element;
+        return $this->items[$key] ?? false;
     }
 
-    public function set(array $storage): void
+    /**
+     * @param $element
+     */
+    public function add($element)
     {
-        $this->storage = $storage;
+        $this->items[] = $element;
+    }
+
+    /**
+     * @param array $items
+     */
+    public function set(array $items)
+    {
+        $this->items = $items;
+    }
+
+    /**
+     * @return ArrayIterator
+     */
+    public function getIterator(): ArrayIterator
+    {
+        return new ArrayIterator($this->items);
     }
 }

@@ -8,12 +8,35 @@ class Category
 {
     use QueryParameter;
 
+    /**
+     * @var mixed|null
+     */
     private $cat;
-    private ?string $category_name;
-    private ?array $category__and;
-    private ?array $category__in;
-    private ?array $category__not_in;
+    /**
+     * @var string|null
+     */
+    private $category_name;
+    /**
+     * @var array|null
+     */
+    private $category__and;
+    /**
+     * @var array|null
+     */
+    private $category__in;
+    /**
+     * @var array|null
+     */
+    private $category__not_in;
 
+    /**
+     * Category constructor.
+     * @param null $cat
+     * @param string|null $category_name
+     * @param array|null $category__and
+     * @param array|null $category__in
+     * @param array|null $category__not_in
+     */
     public function __construct($cat = null, string $category_name = null, array $category__and = null, array $category__in = null, array $category__not_in = null)
     {
         $this->cat = $cat;
@@ -34,7 +57,7 @@ class Category
     /**
      * @return string|null
      */
-    public function getCategoryName(): ?string
+    public function getCategoryName()
     {
         return $this->category_name;
     }
@@ -42,7 +65,7 @@ class Category
     /**
      * @return array|null
      */
-    public function getCategoryAnd(): ?array
+    public function getCategoryAnd()
     {
         return $this->category__and;
     }
@@ -50,7 +73,7 @@ class Category
     /**
      * @return array|null
      */
-    public function getCategoryIn(): ?array
+    public function getCategoryIn()
     {
         return $this->category__in;
     }
@@ -58,7 +81,7 @@ class Category
     /**
      * @return array|null
      */
-    public function getCategoryNotIn(): ?array
+    public function getCategoryNotIn()
     {
         return $this->category__not_in;
     }
@@ -66,7 +89,7 @@ class Category
     /**
      * @param mixed|null $cat
      */
-    public function setCat($cat): void
+    public function setCat($cat)
     {
         $this->cat = $cat;
     }
@@ -74,7 +97,7 @@ class Category
     /**
      * @param string|null $category_name
      */
-    public function setCategoryName(?string $category_name): void
+    public function setCategoryName($category_name)
     {
         $this->category_name = $category_name;
     }
@@ -82,7 +105,7 @@ class Category
     /**
      * @param array|null $category__and
      */
-    public function setCategoryAnd(?array $category__and): void
+    public function setCategoryAnd($category__and)
     {
         $this->category__and = $category__and;
     }
@@ -90,7 +113,7 @@ class Category
     /**
      * @param array|null $category__in
      */
-    public function setCategoryIn(?array $category__in): void
+    public function setCategoryIn($category__in)
     {
         $this->category__in = $category__in;
     }
@@ -98,7 +121,7 @@ class Category
     /**
      * @param array|null $category__not_in
      */
-    public function setCategoryNotIn(?array $category__not_in): void
+    public function setCategoryNotIn($category__not_in)
     {
         $this->category__not_in = $category__not_in;
     }

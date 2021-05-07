@@ -10,7 +10,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function submenu(string $parentSlug, string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -22,7 +22,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function management(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -34,7 +34,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function options(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -46,7 +46,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function theme(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -58,7 +58,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function plugins(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -70,7 +70,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function users(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -82,7 +82,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function dashboard(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -94,7 +94,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function posts(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -106,7 +106,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function links(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -118,7 +118,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function pages(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {
@@ -130,7 +130,7 @@ class Page
      * @param string $menuTitle
      * @param string $capability
      * @param string $menuSlug
-     * @param string $function
+     * @param string|callable $function
      * @param int|null $position
      */
     public static function comments(string $pageTitle, string $menuTitle, string $capability, string $menuSlug, $function = '', int $position = null) {

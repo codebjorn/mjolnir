@@ -8,9 +8,20 @@ class Password
 {
     use QueryParameter;
 
-    private ?bool $has_password;
-    private ?string $post_password;
+    /**
+     * @var bool|null
+     */
+    private $has_password;
+    /**
+     * @var string|null
+     */
+    private $post_password;
 
+    /**
+     * Password constructor.
+     * @param bool|null $has_password
+     * @param string|null $post_password
+     */
     public function __construct(bool $has_password = null, string $post_password = null)
     {
         $this->has_password = $has_password;
@@ -20,7 +31,7 @@ class Password
     /**
      * @return bool|null
      */
-    public function getHasPassword(): ?bool
+    public function getHasPassword()
     {
         return $this->has_password;
     }
@@ -28,7 +39,7 @@ class Password
     /**
      * @param bool|null $has_password
      */
-    public function setHasPassword(?bool $has_password): void
+    public function setHasPassword($has_password)
     {
         $this->has_password = $has_password;
     }
@@ -36,7 +47,7 @@ class Password
     /**
      * @return string|null
      */
-    public function getPostPassword(): ?string
+    public function getPostPassword()
     {
         return $this->post_password;
     }
@@ -44,7 +55,7 @@ class Password
     /**
      * @param string|null $post_password
      */
-    public function setPostPassword(?string $post_password): void
+    public function setPostPassword($post_password)
     {
         $this->post_password = $post_password;
     }

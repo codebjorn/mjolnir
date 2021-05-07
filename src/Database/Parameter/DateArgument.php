@@ -8,13 +8,34 @@ class DateArgument
 {
     use QueryParameter;
 
-    private ?int $year;
-    private ?int $month;
-    private ?int $week;
-    private ?int $day;
-    private ?int $hour;
-    private ?int $minute;
-    private ?int $second;
+    /**
+     * @var int|null
+     */
+    private $year;
+    /**
+     * @var int|null
+     */
+    private $month;
+    /**
+     * @var int|null
+     */
+    private $week;
+    /**
+     * @var int|null
+     */
+    private $day;
+    /**
+     * @var int|null
+     */
+    private $hour;
+    /**
+     * @var int|null
+     */
+    private $minute;
+    /**
+     * @var int|null
+     */
+    private $second;
     /**
      * @var null|string|array
      */
@@ -23,11 +44,39 @@ class DateArgument
      * @var null|string|array
      */
     private $before;
-    private ?bool $inclusive;
-    private ?string $compare;
-    private ?string $column;
-    private ?string $relation;
+    /**
+     * @var bool|null
+     */
+    private $inclusive;
+    /**
+     * @var string|null
+     */
+    private $compare;
+    /**
+     * @var string|null
+     */
+    private $column;
+    /**
+     * @var string|null
+     */
+    private $relation;
 
+    /**
+     * DateArgument constructor.
+     * @param int|null $year
+     * @param int|null $month
+     * @param int|null $week
+     * @param int|null $day
+     * @param int|null $hour
+     * @param int|null $minute
+     * @param int|null $second
+     * @param null $after
+     * @param null $before
+     * @param bool|null $inclusive
+     * @param string|null $compare
+     * @param string|null $column
+     * @param string|null $relation
+     */
     public function __construct(int $year = null, int $month = null, int $week = null, int $day = null, int $hour = null, int $minute = null, int $second = null, $after = null, $before = null, bool $inclusive = null, string $compare = null, string $column = null, string $relation = null)
     {
         $this->year = $year;
@@ -48,7 +97,7 @@ class DateArgument
     /**
      * @return int|null
      */
-    public function getYear(): ?int
+    public function getYear()
     {
         return $this->year;
     }
@@ -56,7 +105,7 @@ class DateArgument
     /**
      * @param int|null $year
      */
-    public function setYear(?int $year): void
+    public function setYear($year)
     {
         $this->year = $year;
     }
@@ -64,7 +113,7 @@ class DateArgument
     /**
      * @return int|null
      */
-    public function getMonth(): ?int
+    public function getMonth()
     {
         return $this->month;
     }
@@ -72,7 +121,7 @@ class DateArgument
     /**
      * @param int|null $month
      */
-    public function setMonth(?int $month): void
+    public function setMonth($month)
     {
         $this->month = $month;
     }
@@ -80,7 +129,7 @@ class DateArgument
     /**
      * @return int|null
      */
-    public function getWeek(): ?int
+    public function getWeek()
     {
         return $this->week;
     }
@@ -88,7 +137,7 @@ class DateArgument
     /**
      * @param int|null $week
      */
-    public function setWeek(?int $week): void
+    public function setWeek($week)
     {
         $this->week = $week;
     }
@@ -96,7 +145,7 @@ class DateArgument
     /**
      * @return int|null
      */
-    public function getDay(): ?int
+    public function getDay()
     {
         return $this->day;
     }
@@ -104,7 +153,7 @@ class DateArgument
     /**
      * @param int|null $day
      */
-    public function setDay(?int $day): void
+    public function setDay($day)
     {
         $this->day = $day;
     }
@@ -112,7 +161,7 @@ class DateArgument
     /**
      * @return int|null
      */
-    public function getHour(): ?int
+    public function getHour()
     {
         return $this->hour;
     }
@@ -120,7 +169,7 @@ class DateArgument
     /**
      * @param int|null $hour
      */
-    public function setHour(?int $hour): void
+    public function setHour($hour)
     {
         $this->hour = $hour;
     }
@@ -128,7 +177,7 @@ class DateArgument
     /**
      * @return int|null
      */
-    public function getMinute(): ?int
+    public function getMinute()
     {
         return $this->minute;
     }
@@ -136,7 +185,7 @@ class DateArgument
     /**
      * @param int|null $minute
      */
-    public function setMinute(?int $minute): void
+    public function setMinute($minute)
     {
         $this->minute = $minute;
     }
@@ -144,7 +193,7 @@ class DateArgument
     /**
      * @return int|null
      */
-    public function getSecond(): ?int
+    public function getSecond()
     {
         return $this->second;
     }
@@ -152,7 +201,7 @@ class DateArgument
     /**
      * @param int|null $second
      */
-    public function setSecond(?int $second): void
+    public function setSecond($second)
     {
         $this->second = $second;
     }
@@ -168,7 +217,7 @@ class DateArgument
     /**
      * @param array|string|null $after
      */
-    public function setAfter($after): void
+    public function setAfter($after)
     {
         $this->after = $after;
     }
@@ -184,7 +233,7 @@ class DateArgument
     /**
      * @param array|string|null $before
      */
-    public function setBefore($before): void
+    public function setBefore($before)
     {
         $this->before = $before;
     }
@@ -192,7 +241,7 @@ class DateArgument
     /**
      * @return bool|null
      */
-    public function getInclusive(): ?bool
+    public function getInclusive()
     {
         return $this->inclusive;
     }
@@ -200,7 +249,7 @@ class DateArgument
     /**
      * @param bool|null $inclusive
      */
-    public function setInclusive(?bool $inclusive): void
+    public function setInclusive($inclusive)
     {
         $this->inclusive = $inclusive;
     }
@@ -208,7 +257,7 @@ class DateArgument
     /**
      * @return string|null
      */
-    public function getCompare(): ?string
+    public function getCompare()
     {
         return $this->compare;
     }
@@ -216,7 +265,7 @@ class DateArgument
     /**
      * @param string|null $compare
      */
-    public function setCompare(?string $compare): void
+    public function setCompare($compare)
     {
         $this->compare = $compare;
     }
@@ -224,7 +273,7 @@ class DateArgument
     /**
      * @return string|null
      */
-    public function getColumn(): ?string
+    public function getColumn()
     {
         return $this->column;
     }
@@ -232,7 +281,7 @@ class DateArgument
     /**
      * @param string|null $column
      */
-    public function setColumn(?string $column): void
+    public function setColumn($column)
     {
         $this->column = $column;
     }
@@ -240,7 +289,7 @@ class DateArgument
     /**
      * @return string|null
      */
-    public function getRelation(): ?string
+    public function getRelation()
     {
         return $this->relation;
     }
@@ -248,7 +297,7 @@ class DateArgument
     /**
      * @param string|null $relation
      */
-    public function setRelation(?string $relation): void
+    public function setRelation($relation)
     {
         $this->relation = $relation;
     }

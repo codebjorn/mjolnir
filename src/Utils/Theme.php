@@ -18,7 +18,7 @@ class Theme
      * @param string $domain
      * @param false $path
      */
-    public static function textDomain(string $domain, $path = false)
+    public static function textDomain(string $domain, bool $path = false)
     {
         load_theme_textdomain($domain, $path);
     }

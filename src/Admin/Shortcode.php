@@ -2,12 +2,8 @@
 
 namespace Mjolnir\Admin;
 
-use Mjolnir\Container\ContainerResolver;
-use Mjolnir\Traits\GetContainer;
-
 class Shortcode
 {
-    use GetContainer;
 
     /**
      * @param array $pairs
@@ -15,7 +11,7 @@ class Shortcode
      * @param string $shortcode
      * @return array
      */
-    public static function attributes(array $pairs, array $attrs, string $shortcode = '')
+    public static function attributes(array $pairs, array $attrs, string $shortcode = ''): array
     {
         return shortcode_atts($pairs, $attrs, $shortcode);
     }
@@ -26,9 +22,7 @@ class Shortcode
      */
     public static function add(string $tag, $function)
     {
-        $resolvedFunction = ContainerResolver::resolve($function);
-
-        add_shortcode($tag, $resolvedFunction);
+        add_shortcode($tag, $function);
     }
 
     /**
@@ -39,9 +33,6 @@ class Shortcode
         remove_shortcode($tag);
     }
 
-    /**
-     *
-     */
     public static function removeAll()
     {
         remove_all_shortcodes();

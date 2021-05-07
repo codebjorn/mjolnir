@@ -9,11 +9,15 @@ trait QueryParameter
     /**
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         $props = Collection::make(get_class_vars(static::class));
-        return $props->map(fn($item, $index) => $this->{$index})
-            ->filter(fn($item) => $item !== null)
+        return $props->map(function ($item, $index) {
+            return $this->{$index};
+        })
+            ->filter(function ($item) {
+                return $item !== null;
+            })
             ->toArray();
     }
 }

@@ -5,10 +5,10 @@ namespace Mjolnir\Routing;
 class Api
 {
 
-    private string $namespace;
-    private string $route;
-    private ?array $args;
-    private bool $override;
+    private $namespace;
+    private $route;
+    private $args;
+    private $override;
 
     /**
      * @param string $namespace
@@ -31,13 +31,13 @@ class Api
      * @param bool $override
      * @return static
      */
-    public static function make(string $namespace, string $route, array $args = null, bool $override = false)
+    public static function make(string $namespace, string $route, array $args = null, bool $override = false): Api
     {
         return new static($namespace, $route, $args, $override);
     }
 
     /**
-     * @return mixed
+     * @return void
      */
     public function register()
     {
@@ -50,7 +50,7 @@ class Api
      * @param array $args
      * @return $this
      */
-    public function get($callback, $permissionCallback, array $args = [])
+    public function get($callback, $permissionCallback, array $args = []): Api
     {
         $this->args[] = [
             'methods' => "GET",
@@ -68,7 +68,7 @@ class Api
      * @param array $args
      * @return $this
      */
-    public function post($callback, $permissionCallback, array $args = [])
+    public function post($callback, $permissionCallback, array $args = []): Api
     {
         $this->args[] = [
             'methods' => "POST",
@@ -86,7 +86,7 @@ class Api
      * @param array $args
      * @return $this
      */
-    public function put($callback, $permissionCallback, array $args = [])
+    public function put($callback, $permissionCallback, array $args = []): Api
     {
         $this->args[] = [
             'methods' => "PUT",
@@ -104,7 +104,7 @@ class Api
      * @param array $args
      * @return $this
      */
-    public function path($callback, $permissionCallback, array $args = [])
+    public function path($callback, $permissionCallback, array $args = []): Api
     {
         $this->args[] = [
             'methods' => "PATH",
@@ -122,7 +122,7 @@ class Api
      * @param array $args
      * @return $this
      */
-    public function delete($callback, $permissionCallback, array $args = [])
+    public function delete($callback, $permissionCallback, array $args = []): Api
     {
         $this->args[] = [
             'methods' => "DELETE",

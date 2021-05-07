@@ -4,23 +4,19 @@ namespace Mjolnir\Abstracts;
 
 use Mjolnir\Hooks\Group;
 use Mjolnir\Hooks\Hook;
-use Mjolnir\Hooks\HookRepository;
-use Mjolnir\Traits\GetContainer;
-use Mjolnir\Traits\Instantiable;
 
 abstract class AbstractHook
 {
-    use Instantiable, GetContainer;
-
-    protected static string $action = "add_action";
+    protected static $action = "add_action";
+    protected static $containerClass;
 
     /**
      * @param string $tag
      * @return Group
      */
-    public static function group(string $tag)
+    public static function group(string $tag): Group
     {
-        return new Group(static::$action, $tag);
+        return new Group(static::$containerClass, static::$action, $tag);
     }
 
     /**
@@ -37,7 +33,10 @@ abstract class AbstractHook
             'args' => $args
         ]);
 
-        static::container()->extend(HookRepository::class)
-            ->addMethodCall('add', [$hook]);
+        if (static::$containerClass) {
+            $container = call_user_func([static::$containerClass, 'getInstance']);
+            $container->extend('hooks')
+                ->addMethodCall('add', [$hook]);
+        }
     }
 }

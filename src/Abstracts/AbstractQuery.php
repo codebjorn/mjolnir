@@ -11,7 +11,7 @@ abstract class AbstractQuery
     /**
      * @var array|null
      */
-    protected ?array $arguments;
+    protected $arguments;
 
     /**
      * @param array $arguments
@@ -48,7 +48,7 @@ abstract class AbstractQuery
         if (Is::obj($object)) {
             $newArgs = $object->toArray();
         } else {
-            $args = (new Collection($arguments))->unshift($object);
+            $args = Collection::make($arguments)->prepend($object);
             $reflection = new ReflectionClass($concrete);
             $obj = $reflection->newInstanceArgs($args->toArray());
             $newArgs = $obj->toArray();

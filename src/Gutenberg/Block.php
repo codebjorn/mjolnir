@@ -9,7 +9,7 @@ class Block
      * @param $name
      * @param array $args
      */
-    public static function register($name, $args = [])
+    public static function register($name, array $args = [])
     {
         register_block_type($name, $args);
     }
@@ -26,7 +26,7 @@ class Block
      * @param $resource
      * @param array $args
      */
-    public static function registerFromMetadata($resource, $args = [])
+    public static function registerFromMetadata($resource, array $args = [])
     {
         register_block_type_from_metadata($resource, $args);
     }
@@ -36,25 +36,16 @@ class Block
      * @param null $post
      * @return bool
      */
-    public static function exists(string $blockName, $post = null)
+    public static function exists(string $blockName, $post = null): bool
     {
         return has_block($blockName, $post);
-    }
-
-    /**
-     * @param null $post
-     * @return bool
-     */
-    public static function all($post = null)
-    {
-        return has_blocks($post);
     }
 
     /**
      * @param array $parsedBlock
      * @return string
      */
-    public static function render(array $parsedBlock)
+    public static function render(array $parsedBlock): string
     {
         return render_block($parsedBlock);
     }
@@ -63,7 +54,7 @@ class Block
      * @param string $content
      * @return array[]
      */
-    public static function parse(string $content)
+    public static function parse(string $content): array
     {
         return parse_blocks($content);
     }

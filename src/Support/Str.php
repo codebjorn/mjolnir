@@ -4,10 +4,16 @@
 namespace Mjolnir\Support;
 
 use Exception;
+use Mjolnir\Traits\Macroable;
 
 class Str
 {
-    private string $string;
+    use Macroable;
+
+    /**
+     * @var string
+     */
+    private $string;
 
     /**
      * @param string $string
@@ -21,7 +27,7 @@ class Str
      * @param string $string
      * @return static
      */
-    public static function make(string $string = '')
+    public static function make(string $string = ''): Str
     {
         return new static($string);
     }
@@ -30,7 +36,7 @@ class Str
      * @param null $encoding
      * @return $this
      */
-    public function lower($encoding = null)
+    public function lower($encoding = null): Str
     {
         return new static(mb_strtolower($this->string, $encoding));
     }
@@ -39,7 +45,7 @@ class Str
      * @param null $encoding
      * @return $this
      */
-    public function upper($encoding = null)
+    public function upper($encoding = null): Str
     {
         return new static(mb_strtoupper($this->string, $encoding));
     }
@@ -48,7 +54,7 @@ class Str
      * @param int $length
      * @return array
      */
-    public function split(int $length = 1)
+    public function split(int $length = 1): array
     {
         return str_split($this->string, $length);
     }
@@ -59,7 +65,7 @@ class Str
      * @param bool $registerSensitive
      * @return $this
      */
-    public function replace($search, $replace, $registerSensitive = true)
+    public function replace($search, $replace, bool $registerSensitive = true): Str
     {
         $res = call_user_func($registerSensitive ? 'str_replace' : 'str_ireplace', $search, $replace, $this->string);
         return new static($res);
@@ -69,7 +75,7 @@ class Str
      * @param string $charlist
      * @return $this
      */
-    public function trim($charlist = " \t\n\r\0\x0B")
+    public function trim(string $charlist = " \t\n\r\0\x0B"): Str
     {
         return new static(trim($this->string, $charlist));
     }
@@ -78,7 +84,7 @@ class Str
      * @param string $charlist
      * @return $this
      */
-    public function ltrim($charlist = " \t\n\r\0\x0B")
+    public function ltrim(string $charlist = " \t\n\r\0\x0B"): Str
     {
         return new static(ltrim($this->string, $charlist));
     }
@@ -87,7 +93,7 @@ class Str
      * @param string $charlist
      * @return $this
      */
-    public function rtrim($charlist = " \t\n\r\0\x0B")
+    public function rtrim(string $charlist = " \t\n\r\0\x0B"): Str
     {
         return new static(rtrim($this->string, $charlist));
     }
@@ -97,7 +103,7 @@ class Str
      * @param null $limit
      * @return Collection
      */
-    public function explode($delimiter, $limit = null)
+    public function explode($delimiter, $limit = null): Collection
     {
         return Collection::make(explode($delimiter, $this->string, $limit));
     }
@@ -105,7 +111,7 @@ class Str
     /**
      * @return $this
      */
-    public function upperFirst()
+    public function upperFirst(): Str
     {
         return new static(ucfirst($this->string));
     }
@@ -113,7 +119,7 @@ class Str
     /**
      * @return $this
      */
-    public function lowerFirst()
+    public function lowerFirst(): Str
     {
         return new static(lcfirst($this->string));
     }
@@ -122,7 +128,7 @@ class Str
      * @param bool $rawOutput
      * @return $this
      */
-    public function md5(bool $rawOutput = false)
+    public function md5(bool $rawOutput = false): Str
     {
         return new static(md5($this->string, $rawOutput));
     }
@@ -131,7 +137,7 @@ class Str
      * @param bool $xhtml
      * @return $this
      */
-    public function nl2br(bool $xhtml = true)
+    public function nl2br(bool $xhtml = true): Str
     {
         return new static(nl2br($this->string, $xhtml));
     }
@@ -141,7 +147,7 @@ class Str
      * @param float|int $similarPercent
      * @return bool
      */
-    public function isSimilar(string $search, float $similarPercent = 100)
+    public function isSimilar(string $search, float $similarPercent = 100): bool
     {
         similar_text($this->string, $search, $prc);
         return $prc >= $similarPercent;
@@ -150,25 +156,16 @@ class Str
     /**
      * @return string
      */
-    public function soundex()
+    public function soundex(): string
     {
         return soundex($this->string);
-    }
-
-    /**
-     * @param string $search
-     * @return bool
-     */
-    public function soundLike(string $search)
-    {
-        return self::soundex() == self::soundex($search);
     }
 
     /**
      * @param int $count
      * @return $this
      */
-    public function repeat(int $count)
+    public function repeat(int $count): Str
     {
         return new static(str_repeat($this->string, $count));
     }
@@ -176,7 +173,7 @@ class Str
     /**
      * @return $this
      */
-    public function shuffle()
+    public function shuffle(): Str
     {
         return new static(str_shuffle($this->string));
     }
@@ -194,7 +191,7 @@ class Str
      * @param bool $registerSensitive
      * @return false|mixed
      */
-    public function equal(string $search, $registerSensitive = true)
+    public function equal(string $search, bool $registerSensitive = true)
     {
         return call_user_func($registerSensitive ? 'strcmp' : 'strcasecmp', $this->string, $search);
     }
@@ -211,7 +208,7 @@ class Str
     /**
      * @return $this
      */
-    public function flip()
+    public function flip(): Str
     {
         return new static(strrev($this->string));
     }
@@ -220,7 +217,7 @@ class Str
      * @param string $search
      * @return $this
      */
-    public function before(string $search)
+    public function before(string $search): Str
     {
         return new static(strstr($this->string, $search, true));
     }
@@ -229,7 +226,7 @@ class Str
      * @param string $search
      * @return $this
      */
-    public function after(string $search)
+    public function after(string $search): Str
     {
         return new static(substr($this->string, strpos($this->string, "_") + strlen($search)));
     }
@@ -253,7 +250,7 @@ class Str
      * @param string $search
      * @return bool
      */
-    public function has(string $search)
+    public function has(string $search): bool
     {
         return substr_count($this->string, $search) > 0;
     }
@@ -262,7 +259,7 @@ class Str
      * @param array $search
      * @return bool
      */
-    public function hasAll(array $search)
+    public function hasAll(array $search): bool
     {
 
         foreach ($search as $word)
@@ -276,7 +273,7 @@ class Str
      * @param string $delimiters
      * @return $this
      */
-    public function upperWords($delimiters = " \t\r\n\f\v")
+    public function upperWords(string $delimiters = " \t\r\n\f\v"): Str
     {
         return new static(ucwords($this->string, $delimiters));
     }
@@ -286,7 +283,7 @@ class Str
      * @param $replace
      * @return $this
      */
-    public function pregReplace($pattern, $replace)
+    public function pregReplace($pattern, $replace): Str
     {
         return new static(preg_replace($pattern, $replace, $this->string));
     }
@@ -295,7 +292,7 @@ class Str
      * @param string $delimiter
      * @return string|Str
      */
-    public function snake($delimiter = '_')
+    public function snake(string $delimiter = '_')
     {
         if (ctype_lower($this->string)) {
             return $this->string;
@@ -320,7 +317,7 @@ class Str
      * @param string $end
      * @return $this|string
      */
-    public function words($words = 100, $end = '...')
+    public function words(int $words = 100, string $end = '...')
     {
         preg_match('/^\s*+(?:\S++\s*+){1,' . $words . '}/u', $this->string, $matches);
 
@@ -336,7 +333,7 @@ class Str
      * @return string
      * @throws Exception
      */
-    public static function random(int $length = 16)
+    public static function random(int $length = 16): string
     {
         $string = '';
 
@@ -353,7 +350,7 @@ class Str
      * @param string $encoding
      * @return $this
      */
-    public function title($encoding = 'UTF-8')
+    public function title(string $encoding = 'UTF-8'): Str
     {
         return new static(mb_convert_case($this->string, MB_CASE_TITLE, $encoding));
     }
@@ -362,7 +359,7 @@ class Str
      * @param array $delimiters
      * @return Str
      */
-    public function studly(array $delimiters = [])
+    public function studly(array $delimiters = []): Str
     {
         return $this->kebab()
             ->replace(['-', '_'] + $delimiters, ' ')
@@ -373,7 +370,7 @@ class Str
     /**
      * @return $this
      */
-    public function camel()
+    public function camel(): Str
     {
         return $this->studly()
             ->lowerFirst();
@@ -385,7 +382,7 @@ class Str
      * @param string $encoding
      * @return $this
      */
-    public function cut($start, $length = null, $encoding = 'UTF-8')
+    public function cut($start, $length = null, string $encoding = 'UTF-8'): Str
     {
         return new static(mb_substr($this->string, $start, $length, $encoding));
     }

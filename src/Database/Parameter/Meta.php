@@ -10,12 +10,35 @@ class Meta
 {
     use QueryParameter;
 
-    private ?array $meta_query;
-    private ?string $meta_key;
-    private ?string $meta_value;
-    private ?string $meta_value_num;
-    private ?string $meta_compare;
+    /**
+     * @var array|null
+     */
+    private $meta_query;
+    /**
+     * @var string|null
+     */
+    private $meta_key;
+    /**
+     * @var string|null
+     */
+    private $meta_value;
+    /**
+     * @var string|null
+     */
+    private $meta_value_num;
+    /**
+     * @var string|null
+     */
+    private $meta_compare;
 
+    /**
+     * Meta constructor.
+     * @param array|null $meta_query
+     * @param string|null $meta_key
+     * @param string|null $meta_value
+     * @param string|null $meta_value_num
+     * @param string|null $meta_compare
+     */
     public function __construct(array $meta_query = null, string $meta_key = null, string $meta_value = null, string $meta_value_num = null, string $meta_compare = null)
     {
         $this->meta_query = $meta_query;
@@ -28,7 +51,7 @@ class Meta
     /**
      * @return array|null
      */
-    public function getMetaQuery(): ?array
+    public function getMetaQuery()
     {
         return $this->meta_query;
     }
@@ -36,7 +59,7 @@ class Meta
     /**
      * @param array|null $meta_query
      */
-    public function setMetaQuery(?array $meta_query): void
+    public function setMetaQuery($meta_query)
     {
         $this->meta_query = $meta_query;
     }
@@ -44,7 +67,7 @@ class Meta
     /**
      * @return string|null
      */
-    public function getMetaKey(): ?string
+    public function getMetaKey()
     {
         return $this->meta_key;
     }
@@ -52,7 +75,7 @@ class Meta
     /**
      * @param string|null $meta_key
      */
-    public function setMetaKey(?string $meta_key): void
+    public function setMetaKey($meta_key)
     {
         $this->meta_key = $meta_key;
     }
@@ -60,7 +83,7 @@ class Meta
     /**
      * @return string|null
      */
-    public function getMetaValue(): ?string
+    public function getMetaValue()
     {
         return $this->meta_value;
     }
@@ -68,7 +91,7 @@ class Meta
     /**
      * @param string|null $meta_value
      */
-    public function setMetaValue(?string $meta_value): void
+    public function setMetaValue($meta_value)
     {
         $this->meta_value = $meta_value;
     }
@@ -76,7 +99,7 @@ class Meta
     /**
      * @return string|null
      */
-    public function getMetaValueNum(): ?string
+    public function getMetaValueNum()
     {
         return $this->meta_value_num;
     }
@@ -84,7 +107,7 @@ class Meta
     /**
      * @param string|null $meta_value_num
      */
-    public function setMetaValueNum(?string $meta_value_num): void
+    public function setMetaValueNum($meta_value_num)
     {
         $this->meta_value_num = $meta_value_num;
     }
@@ -92,7 +115,7 @@ class Meta
     /**
      * @return string|null
      */
-    public function getMetaCompare(): ?string
+    public function getMetaCompare()
     {
         return $this->meta_compare;
     }
@@ -100,25 +123,32 @@ class Meta
     /**
      * @param string|null $meta_compare
      */
-    public function setMetaCompare(?string $meta_compare): void
+    public function setMetaCompare($meta_compare)
     {
         $this->meta_compare = $meta_compare;
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         $props = Collection::make(get_class_vars(static::class));
         $resolvedProps = $props->map(function ($item, $index) {
             if ($index === "meta_query") {
                 return Collection::make($this->{$index} ?? [])
-                    ->map(fn($class) => Is::obj($class) ? $class->toArray() : $class)
+                    ->map(function ($class) {
+                        return Is::obj($class) ? $class->toArray() : $class;
+                    })
                     ->toArray();
             }
 
             return $this->{$index};
         });
 
-        return $resolvedProps->filter(fn($item) => $item !== null)
+        return $resolvedProps->filter(function ($item) {
+            return $item !== null;
+        })
             ->toArray();
     }
 }

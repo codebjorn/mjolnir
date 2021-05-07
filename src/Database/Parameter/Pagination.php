@@ -8,14 +8,45 @@ class Pagination
 {
     use QueryParameter;
 
-    private ?int $posts_per_page;
-    private ?bool $nopaging;
-    private ?int $paged;
-    private ?int $posts_per_archive_page;
-    private ?int $offset;
-    private ?int $page;
-    private ?bool $ignore_sticky_posts;
+    /**
+     * @var int|null
+     */
+    private $posts_per_page;
+    /**
+     * @var bool|null
+     */
+    private $nopaging;
+    /**
+     * @var int|null
+     */
+    private $paged;
+    /**
+     * @var int|null
+     */
+    private $posts_per_archive_page;
+    /**
+     * @var int|null
+     */
+    private $offset;
+    /**
+     * @var int|null
+     */
+    private $page;
+    /**
+     * @var bool|null
+     */
+    private $ignore_sticky_posts;
 
+    /**
+     * Pagination constructor.
+     * @param int|null $posts_per_page
+     * @param bool|null $nopaging
+     * @param int|null $paged
+     * @param int|null $posts_per_archive_page
+     * @param int|null $offset
+     * @param int|null $page
+     * @param bool|null $ignore_sticky_posts
+     */
     public function __construct(int $posts_per_page = null, bool $nopaging = null, int $paged = null, int $posts_per_archive_page = null, int $offset = null, int $page = null, bool $ignore_sticky_posts = null)
     {
         $this->posts_per_page = $posts_per_page;
@@ -30,7 +61,7 @@ class Pagination
     /**
      * @return int|null
      */
-    public function getPostsPerPage(): ?int
+    public function getPostsPerPage()
     {
         return $this->posts_per_page;
     }
@@ -38,7 +69,7 @@ class Pagination
     /**
      * @param int|null $posts_per_page
      */
-    public function setPostsPerPage(?int $posts_per_page): void
+    public function setPostsPerPage($posts_per_page)
     {
         $this->posts_per_page = $posts_per_page;
     }
@@ -46,7 +77,7 @@ class Pagination
     /**
      * @return bool|null
      */
-    public function getNopaging(): ?bool
+    public function getNopaging()
     {
         return $this->nopaging;
     }
@@ -54,7 +85,7 @@ class Pagination
     /**
      * @param bool|null $nopaging
      */
-    public function setNopaging(?bool $nopaging): void
+    public function setNopaging($nopaging)
     {
         $this->nopaging = $nopaging;
     }
@@ -62,7 +93,7 @@ class Pagination
     /**
      * @return int|null
      */
-    public function getPaged(): ?int
+    public function getPaged()
     {
         return $this->paged;
     }
@@ -70,7 +101,7 @@ class Pagination
     /**
      * @param int|null $paged
      */
-    public function setPaged(?int $paged): void
+    public function setPaged($paged)
     {
         $this->paged = $paged;
     }
@@ -78,7 +109,7 @@ class Pagination
     /**
      * @return int|null
      */
-    public function getPostsPerArchivePage(): ?int
+    public function getPostsPerArchivePage()
     {
         return $this->posts_per_archive_page;
     }
@@ -86,7 +117,7 @@ class Pagination
     /**
      * @param int|null $posts_per_archive_page
      */
-    public function setPostsPerArchivePage(?int $posts_per_archive_page): void
+    public function setPostsPerArchivePage($posts_per_archive_page)
     {
         $this->posts_per_archive_page = $posts_per_archive_page;
     }
@@ -94,7 +125,7 @@ class Pagination
     /**
      * @return int|null
      */
-    public function getOffset(): ?int
+    public function getOffset()
     {
         return $this->offset;
     }
@@ -102,7 +133,7 @@ class Pagination
     /**
      * @param int|null $offset
      */
-    public function setOffset(?int $offset): void
+    public function setOffset($offset)
     {
         $this->offset = $offset;
     }
@@ -110,7 +141,7 @@ class Pagination
     /**
      * @return int|null
      */
-    public function getPage(): ?int
+    public function getPage()
     {
         return $this->page;
     }
@@ -118,7 +149,7 @@ class Pagination
     /**
      * @param int|null $page
      */
-    public function setPage(?int $page): void
+    public function setPage($page)
     {
         $this->page = $page;
     }
@@ -126,7 +157,7 @@ class Pagination
     /**
      * @return bool|null
      */
-    public function getIgnoreStickyPosts(): ?bool
+    public function getIgnoreStickyPosts()
     {
         return $this->ignore_sticky_posts;
     }
@@ -134,7 +165,7 @@ class Pagination
     /**
      * @param bool|null $ignore_sticky_posts
      */
-    public function setIgnoreStickyPosts(?bool $ignore_sticky_posts): void
+    public function setIgnoreStickyPosts($ignore_sticky_posts)
     {
         $this->ignore_sticky_posts = $ignore_sticky_posts;
     }

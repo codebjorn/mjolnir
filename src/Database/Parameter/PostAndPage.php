@@ -8,18 +8,65 @@ class PostAndPage
 {
     use QueryParameter;
 
-    private ?int $p;
-    private ?string $name;
-    private ?string $title;
-    private ?int $page_id;
-    private ?string $pagename;
-    private ?array $post_name__in;
-    private ?array $post_parent;
-    private ?array $post_parent__in;
-    private ?array $post_parent__not_in;
-    private ?array $post__in;
-    private ?array $post__not_in;
+    /**
+     * @var int|null
+     */
+    private $p;
+    /**
+     * @var string|null
+     */
+    private $name;
+    /**
+     * @var string|null
+     */
+    private $title;
+    /**
+     * @var int|null
+     */
+    private $page_id;
+    /**
+     * @var string|null
+     */
+    private $pagename;
+    /**
+     * @var array|null
+     */
+    private $post_name__in;
+    /**
+     * @var array|null
+     */
+    private $post_parent;
+    /**
+     * @var array|null
+     */
+    private $post_parent__in;
+    /**
+     * @var array|null
+     */
+    private $post_parent__not_in;
+    /**
+     * @var array|null
+     */
+    private $post__in;
+    /**
+     * @var array|null
+     */
+    private $post__not_in;
 
+    /**
+     * PostAndPage constructor.
+     * @param int|null $p
+     * @param string|null $name
+     * @param string|null $title
+     * @param int|null $page_id
+     * @param string|null $pagename
+     * @param array|null $post_name__in
+     * @param array|null $post_parent
+     * @param array|null $post_parent__in
+     * @param array|null $post_parent__not_in
+     * @param array|null $post__in
+     * @param array|null $post__not_in
+     */
     public function __construct(int $p = null, string $name = null, string $title = null, int $page_id = null, string $pagename = null, array $post_name__in = null, array $post_parent = null, array $post_parent__in = null, array $post_parent__not_in = null, array $post__in = null, array $post__not_in = null)
     {
         $this->p = $p;
@@ -38,7 +85,7 @@ class PostAndPage
     /**
      * @return int|null
      */
-    public function getP(): ?int
+    public function getP()
     {
         return $this->p;
     }
@@ -46,7 +93,7 @@ class PostAndPage
     /**
      * @param int|null $p
      */
-    public function setP(?int $p): void
+    public function setP($p)
     {
         $this->p = $p;
     }
@@ -54,7 +101,7 @@ class PostAndPage
     /**
      * @return string|null
      */
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
@@ -62,7 +109,7 @@ class PostAndPage
     /**
      * @param string|null $name
      */
-    public function setName(?string $name): void
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -70,7 +117,7 @@ class PostAndPage
     /**
      * @return string|null
      */
-    public function getTitle(): ?string
+    public function getTitle()
     {
         return $this->title;
     }
@@ -78,7 +125,7 @@ class PostAndPage
     /**
      * @param string|null $title
      */
-    public function setTitle(?string $title): void
+    public function setTitle($title)
     {
         $this->title = $title;
     }
@@ -86,7 +133,7 @@ class PostAndPage
     /**
      * @return int|null
      */
-    public function getPageId(): ?int
+    public function getPageId()
     {
         return $this->page_id;
     }
@@ -94,7 +141,7 @@ class PostAndPage
     /**
      * @param int|null $page_id
      */
-    public function setPageId(?int $page_id): void
+    public function setPageId($page_id)
     {
         $this->page_id = $page_id;
     }
@@ -102,7 +149,7 @@ class PostAndPage
     /**
      * @return string|null
      */
-    public function getPagename(): ?string
+    public function getPagename()
     {
         return $this->pagename;
     }
@@ -110,7 +157,7 @@ class PostAndPage
     /**
      * @param string|null $pagename
      */
-    public function setPagename(?string $pagename): void
+    public function setPagename($pagename)
     {
         $this->pagename = $pagename;
     }
@@ -118,7 +165,7 @@ class PostAndPage
     /**
      * @return array|null
      */
-    public function getPostNameIn(): ?array
+    public function getPostNameIn()
     {
         return $this->post_name__in;
     }
@@ -126,7 +173,7 @@ class PostAndPage
     /**
      * @param array|null $post_name__in
      */
-    public function setPostNameIn(?array $post_name__in): void
+    public function setPostNameIn($post_name__in)
     {
         $this->post_name__in = $post_name__in;
     }
@@ -134,7 +181,7 @@ class PostAndPage
     /**
      * @return array|null
      */
-    public function getPostParent(): ?array
+    public function getPostParent()
     {
         return $this->post_parent;
     }
@@ -142,7 +189,7 @@ class PostAndPage
     /**
      * @param array|null $post_parent
      */
-    public function setPostParent(?array $post_parent): void
+    public function setPostParent($post_parent)
     {
         $this->post_parent = $post_parent;
     }
@@ -150,7 +197,7 @@ class PostAndPage
     /**
      * @return array|null
      */
-    public function getPostParentIn(): ?array
+    public function getPostParentIn()
     {
         return $this->post_parent__in;
     }
@@ -158,7 +205,7 @@ class PostAndPage
     /**
      * @param array|null $post_parent__in
      */
-    public function setPostParentIn(?array $post_parent__in): void
+    public function setPostParentIn($post_parent__in)
     {
         $this->post_parent__in = $post_parent__in;
     }
@@ -166,7 +213,7 @@ class PostAndPage
     /**
      * @return array|null
      */
-    public function getPostParentNotIn(): ?array
+    public function getPostParentNotIn()
     {
         return $this->post_parent__not_in;
     }
@@ -174,7 +221,7 @@ class PostAndPage
     /**
      * @param array|null $post_parent__not_in
      */
-    public function setPostParentNotIn(?array $post_parent__not_in): void
+    public function setPostParentNotIn($post_parent__not_in)
     {
         $this->post_parent__not_in = $post_parent__not_in;
     }
@@ -182,7 +229,7 @@ class PostAndPage
     /**
      * @return array|null
      */
-    public function getPostIn(): ?array
+    public function getPostIn()
     {
         return $this->post__in;
     }
@@ -190,7 +237,7 @@ class PostAndPage
     /**
      * @param array|null $post__in
      */
-    public function setPostIn(?array $post__in): void
+    public function setPostIn($post__in)
     {
         $this->post__in = $post__in;
     }
@@ -198,7 +245,7 @@ class PostAndPage
     /**
      * @return array|null
      */
-    public function getPostNotIn(): ?array
+    public function getPostNotIn()
     {
         return $this->post__not_in;
     }
@@ -206,7 +253,7 @@ class PostAndPage
     /**
      * @param array|null $post__not_in
      */
-    public function setPostNotIn(?array $post__not_in): void
+    public function setPostNotIn($post__not_in)
     {
         $this->post__not_in = $post__not_in;
     }

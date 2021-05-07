@@ -8,9 +8,20 @@ class Order
 {
     use QueryParameter;
 
-    private ?string $order;
-    private ?string $orderby;
+    /**
+     * @var string|null
+     */
+    private $order;
+    /**
+     * @var string|null
+     */
+    private $orderby;
 
+    /**
+     * Order constructor.
+     * @param string|null $order
+     * @param string|null $orderby
+     */
     public function __construct(string $order = null, string $orderby = null)
     {
         $this->order = $order;
@@ -20,7 +31,7 @@ class Order
     /**
      * @return string|null
      */
-    public function getOrder(): ?string
+    public function getOrder()
     {
         return $this->order;
     }
@@ -28,7 +39,7 @@ class Order
     /**
      * @param string|null $order
      */
-    public function setOrder(?string $order): void
+    public function setOrder($order)
     {
         $this->order = $order;
     }
@@ -36,7 +47,7 @@ class Order
     /**
      * @return string|null
      */
-    public function getOrderby(): ?string
+    public function getOrderby()
     {
         return $this->orderby;
     }
@@ -44,7 +55,7 @@ class Order
     /**
      * @param string|null $orderby
      */
-    public function setOrderby(?string $orderby): void
+    public function setOrderby($orderby)
     {
         $this->orderby = $orderby;
     }

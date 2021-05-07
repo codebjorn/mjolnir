@@ -4,9 +4,9 @@ namespace Mjolnir\Hooks;
 
 class Hook
 {
-    private ?string $name;
-    private ?string $tag;
-    private array $arguments;
+    private $name;
+    private $tag;
+    private $arguments;
 
     /**
      * Hook constructor.
@@ -24,7 +24,7 @@ class Hook
     /**
      * @return string|null
      */
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
@@ -32,7 +32,7 @@ class Hook
     /**
      * @return string|null
      */
-    public function getTag(): ?string
+    public function getTag()
     {
         return $this->tag;
     }
@@ -48,7 +48,7 @@ class Hook
     /**
      * @param string|null $name
      */
-    public function setName(?string $name): void
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -56,7 +56,7 @@ class Hook
     /**
      * @param string|null $tag
      */
-    public function setTag(?string $tag): void
+    public function setTag($tag)
     {
         $this->tag = $tag;
     }
@@ -64,7 +64,7 @@ class Hook
     /**
      * @param array $arguments
      */
-    public function setArguments(array $arguments): void
+    public function setArguments($arguments)
     {
         $this->arguments = $arguments;
     }

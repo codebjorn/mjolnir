@@ -8,8 +8,15 @@ class Fields
 {
     use QueryParameter;
 
-    private ?string $fields;
+    /**
+     * @var string|null
+     */
+    private $fields;
 
+    /**
+     * Fields constructor.
+     * @param string|null $fields
+     */
     public function __construct(string $fields = null)
     {
         $this->fields = $fields;
@@ -18,7 +25,7 @@ class Fields
     /**
      * @return string|null
      */
-    public function getFields(): ?string
+    public function getFields()
     {
         return $this->fields;
     }
@@ -26,7 +33,7 @@ class Fields
     /**
      * @param string|null $fields
      */
-    public function setFields(?string $fields): void
+    public function setFields($fields)
     {
         $this->fields = $fields;
     }

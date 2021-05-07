@@ -9,7 +9,10 @@ use Mjolnir\Contracts\ExceptionHandlerInterface;
 class Handler implements ExceptionHandlerInterface
 {
 
-    private Logger $logger;
+    /**
+     * @var Logger
+     */
+    private $logger;
 
     /**
      * Handler constructor.
@@ -25,18 +28,20 @@ class Handler implements ExceptionHandlerInterface
     /**
      * @param Logger $logger
      */
-    public function setLogger(Logger $logger): void
+    public function setLogger(Logger $logger)
     {
         $this->logger = $logger;
     }
 
     /**
-     * @return mixed
+     * @return void
      * @throws LoggerException
      */
     private function setExceptionHandler()
     {
-        set_exception_handler(fn(Throwable $e) => $this->handle($e));
+        set_exception_handler(function (Throwable $e) {
+            return $this->handle($e);
+        });
     }
 
     /**
@@ -74,7 +79,7 @@ class Handler implements ExceptionHandlerInterface
      * @return $this
      * @throws LoggerException
      */
-    public function report(Throwable $e)
+    public function report(Throwable $e): Handler
     {
         $this->logger->fatal($e->getMessage(), $e->getTrace());
         return $this;

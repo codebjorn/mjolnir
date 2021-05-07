@@ -29,7 +29,7 @@ class PostStatus
     /**
      * @param null $post_status
      */
-    public function setPostStatus($post_status): void
+    public function setPostStatus($post_status)
     {
         $this->post_status = $post_status;
     }

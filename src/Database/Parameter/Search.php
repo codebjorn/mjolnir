@@ -8,10 +8,25 @@ class Search
 {
     use QueryParameter;
 
-    private ?string $s;
-    private ?bool $exact;
-    private ?bool $sentence;
+    /**
+     * @var string|null
+     */
+    private $s;
+    /**
+     * @var bool|null
+     */
+    private $exact;
+    /**
+     * @var bool|null
+     */
+    private $sentence;
 
+    /**
+     * Search constructor.
+     * @param string|null $s
+     * @param bool|null $exact
+     * @param bool|null $sentence
+     */
     public function __construct(string $s = null, bool $exact = null, bool $sentence = null)
     {
         $this->s = $s;
@@ -22,7 +37,7 @@ class Search
     /**
      * @return string|null
      */
-    public function getS(): ?string
+    public function getS()
     {
         return $this->s;
     }
@@ -30,7 +45,7 @@ class Search
     /**
      * @param string|null $s
      */
-    public function setS(?string $s): void
+    public function setS($s)
     {
         $this->s = $s;
     }
@@ -38,7 +53,7 @@ class Search
     /**
      * @return bool|null
      */
-    public function getExact(): ?bool
+    public function getExact()
     {
         return $this->exact;
     }
@@ -46,7 +61,7 @@ class Search
     /**
      * @param bool|null $exact
      */
-    public function setExact(?bool $exact): void
+    public function setExact($exact)
     {
         $this->exact = $exact;
     }
@@ -54,7 +69,7 @@ class Search
     /**
      * @return bool|null
      */
-    public function getSentence(): ?bool
+    public function getSentence()
     {
         return $this->sentence;
     }
@@ -62,7 +77,7 @@ class Search
     /**
      * @param bool|null $sentence
      */
-    public function setSentence(?bool $sentence): void
+    public function setSentence($sentence)
     {
         $this->sentence = $sentence;
     }

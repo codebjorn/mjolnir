@@ -8,14 +8,30 @@ class MetaArgument
 {
     use QueryParameter;
 
-    private ?string $key;
+    /**
+     * @var string|null
+     */
+    private $key;
     /**
      * @var null
      */
     private $value;
-    private ?string $type;
-    private ?string $compare;
+    /**
+     * @var string|null
+     */
+    private $type;
+    /**
+     * @var string|null
+     */
+    private $compare;
 
+    /**
+     * MetaArgument constructor.
+     * @param string|null $key
+     * @param null $value
+     * @param string|null $type
+     * @param string|null $compare
+     */
     public function __construct(string $key = null, $value = null, string $type = null, string $compare = null)
     {
         $this->key = $key;
@@ -27,7 +43,7 @@ class MetaArgument
     /**
      * @return string|null
      */
-    public function getKey(): ?string
+    public function getKey()
     {
         return $this->key;
     }
@@ -35,7 +51,7 @@ class MetaArgument
     /**
      * @param string|null $key
      */
-    public function setKey(?string $key): void
+    public function setKey($key)
     {
         $this->key = $key;
     }
@@ -51,7 +67,7 @@ class MetaArgument
     /**
      * @param null $value
      */
-    public function setValue($value): void
+    public function setValue($value)
     {
         $this->value = $value;
     }
@@ -59,7 +75,7 @@ class MetaArgument
     /**
      * @return string|null
      */
-    public function getType(): ?string
+    public function getType()
     {
         return $this->type;
     }
@@ -67,7 +83,7 @@ class MetaArgument
     /**
      * @param string|null $type
      */
-    public function setType(?string $type): void
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -75,7 +91,7 @@ class MetaArgument
     /**
      * @return string|null
      */
-    public function getCompare(): ?string
+    public function getCompare()
     {
         return $this->compare;
     }
@@ -83,7 +99,7 @@ class MetaArgument
     /**
      * @param string|null $compare
      */
-    public function setCompare(?string $compare): void
+    public function setCompare($compare)
     {
         $this->compare = $compare;
     }

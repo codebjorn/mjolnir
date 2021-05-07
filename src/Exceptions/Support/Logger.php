@@ -8,9 +8,18 @@ use Mjolnir\Support\Is;
 
 class Logger implements ExceptionLoggerInterface
 {
-    protected string $logFile;
+    /**
+     * @var string
+     */
+    protected $logFile;
+    /**
+     * @var string
+     */
     protected $file;
-    protected array $options;
+    /**
+     * @var array|string[]
+     */
+    protected $options;
 
     /**
      * Logger constructor.
@@ -50,7 +59,7 @@ class Logger implements ExceptionLoggerInterface
      * @param array $options
      * @return $this
      */
-    public function setOptions($options = [])
+    public function setOptions(array $options = []): Logger
     {
         $this->options = array_merge($this->options, $options);
 
@@ -217,7 +226,7 @@ class Logger implements ExceptionLoggerInterface
      * @param $pathToConvert
      * @return string
      */
-    public function absToRelPath($pathToConvert)
+    public function absToRelPath($pathToConvert): string
     {
         $pathAbs = str_replace(['/', '\\'], '/', $pathToConvert);
         $documentRoot = str_replace(['/', '\\'], '/', $_SERVER['DOCUMENT_ROOT']);
@@ -229,7 +238,7 @@ class Logger implements ExceptionLoggerInterface
      * @param string $newLine
      * @return string|string[]|null
      */
-    public function prettyTrace($trace, $newLine = PHP_EOL)
+    public function prettyTrace($trace, string $newLine = PHP_EOL)
     {
         $context = json_encode($trace, JSON_UNESCAPED_SLASHES);
         return preg_replace('/},/', "}," . $newLine, $context);
