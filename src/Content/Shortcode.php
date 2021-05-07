@@ -1,6 +1,6 @@
 <?php
 
-namespace Mjolnir\Admin;
+namespace Mjolnir\Content;
 
 class Shortcode
 {
