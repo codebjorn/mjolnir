@@ -3,13 +3,14 @@
 namespace Mjolnir;
 
 use League\Container\Container;
+use Mjolnir\Config\Config;
 use Mjolnir\Container\ContainerResolver;
 use Mjolnir\Hooks\HookLoader;
 use Mjolnir\Hooks\HookRepository;
 use Mjolnir\Providers\ConfigServiceProvider;
 use Mjolnir\Providers\ExceptionServiceProvider;
 
-class App extends Container
+abstract class App extends Container
 {
     /**
      * @var string
@@ -68,7 +69,7 @@ class App extends Container
         $this->addServiceProvider(ConfigServiceProvider::class);
         $this->addServiceProvider(ExceptionServiceProvider::class);
 
-        $providers = $this->get('config.app')->get('providers');
+        $providers = $this->config('app.providers');
         if ($providers) {
             foreach ($providers as $provider) {
                 $this->addServiceProvider($provider);
@@ -84,4 +85,8 @@ class App extends Container
         HookLoader::load($this);
     }
 
+    public function config(string $identifier)
+    {
+        return Config::get($this, $identifier);
+    }
 }
