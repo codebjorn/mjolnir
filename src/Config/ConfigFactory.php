@@ -3,6 +3,7 @@
 namespace Mjolnir\Config;
 
 use Exception;
+use Mjolnir\Support\Collection;
 use Mjolnir\Traits\Factoryable;
 
 class ConfigFactory
@@ -73,7 +74,7 @@ class ConfigFactory
             }
 
             if (!$this->hasInstance($configName)) {
-                $this->instances[$configName] = new Config($config);
+                $this->instances[$configName] = new Collection($config);
             }
         }
 
