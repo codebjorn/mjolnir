@@ -24,16 +24,8 @@ class ConfigServiceProvider extends AbstractServiceProvider implements BootableS
      */
     public function boot()
     {
-        $basename = 'config';
-
-        $this->container->add($basename, ConfigRepository::class, true)
+        $this->container->add('config', ConfigRepository::class, true)
             ->addArgument($this->configs());
-
-        foreach ($this->container->get($basename) as $key => $config) {
-            $this->container->add("{$basename}.{$key}", function () use ($basename, $key) {
-                return $this->container->get($basename)->get($key);
-            }, true);
-        }
     }
 
     /**
