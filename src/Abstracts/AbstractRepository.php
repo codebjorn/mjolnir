@@ -44,7 +44,16 @@ abstract class AbstractRepository implements IteratorAggregate
      */
     public function get(string $key)
     {
-        return $this->items[$key] ?? false;
+        return $this->items[$key];
+    }
+
+    /**
+     * @param string $key
+     * @return bool|false
+     */
+    public function has(string $key): bool
+    {
+        return isset($this->items[$key]) ?? false;
     }
 
     /**
