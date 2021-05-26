@@ -6,6 +6,7 @@ use Exception;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use Mjolnir\Abstracts\AbstractServiceProvider;
 use Mjolnir\App;
+use Mjolnir\Config\Config;
 use Mjolnir\Config\ConfigFactory;
 use Mjolnir\Config\ConfigRepository;
 
@@ -26,6 +27,9 @@ class ConfigServiceProvider extends AbstractServiceProvider implements BootableS
     {
         $this->container->add('config', ConfigRepository::class, true)
             ->addArgument($this->configs());
+
+        $this->container->share('configAccessor', Config::class)
+            ->addArgument($this->container);
     }
 
     /**

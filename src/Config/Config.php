@@ -4,6 +4,7 @@ namespace Mjolnir\Config;
 
 use Mjolnir\App;
 use Mjolnir\Support\Arr;
+use Mjolnir\Support\Collection;
 
 class Config
 {
@@ -12,34 +13,33 @@ class Config
      * @var App
      */
     private $container;
-    /**
-     * @var string
-     */
-    private $identifier;
 
-    public function __construct(App $container, string $identifier)
+    public function __construct(App $container)
     {
         $this->container = $container;
-        $this->identifier = $identifier;
     }
 
-    public static function get(App $container, string $identifier)
+    public function get(string $identifier)
     {
-        return (new self($container, $identifier))->resolveIdentifier();
+        return $this->resolveIdentifier($identifier);
     }
 
-    private function resolveIdentifier()
+    private function resolveIdentifier(string $identifier)
     {
-        $keys = explode('.', $this->identifier);
-        $firstKey = Arr::first($keys);
+        $keys = Collection::make(explode('.', $identifier));
         $config = $this->container->get('config');
 
-        if (!$config->has($firstKey)) {
+        if (!$config->has($keys->first())) {
             return null;
         }
 
-        $identifierWithoutFirst = implode('.', Arr::except($keys, 0));
-        $items = $config->get($firstKey)
+        if ($keys->count() === 1) {
+            return $config->get($keys->first())
+                ->toArray();
+        }
+
+        $identifierWithoutFirst = $keys->except(0)->implode('.');
+        $items = $config->get($keys->first())
             ->toArray();
 
         return Arr::get($items, $identifierWithoutFirst);
