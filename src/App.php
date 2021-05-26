@@ -3,12 +3,12 @@
 namespace Mjolnir;
 
 use League\Container\Container;
-use Mjolnir\Config\Config;
 use Mjolnir\Container\ContainerResolver;
+use Mjolnir\Gutenberg\BlockLoader;
 use Mjolnir\Hooks\HookLoader;
-use Mjolnir\Hooks\HookRepository;
 use Mjolnir\Providers\ConfigServiceProvider;
 use Mjolnir\Providers\ExceptionServiceProvider;
+use Mjolnir\Providers\GutenbergServiceProvider;
 use Mjolnir\Providers\HooksServiceProvider;
 use Mjolnir\Providers\ViewServiceProvider;
 use Mjolnir\Support\Collection;
@@ -38,6 +38,7 @@ abstract class App extends Container
         $this->setTemplatesFolder();
         $this->addServiceProviders();
         $this->loadHooks();
+        $this->loadBlocks();
     }
 
     /**
@@ -74,6 +75,7 @@ abstract class App extends Container
         $this->addServiceProvider(ExceptionServiceProvider::class);
         $this->addServiceProvider(ViewServiceProvider::class);
         $this->addServiceProvider(HooksServiceProvider::class);
+        $this->addServiceProvider(GutenbergServiceProvider::class);
 
         $providers = $this->config('app.providers');
         if ($providers) {
@@ -121,6 +123,14 @@ abstract class App extends Container
     private function loadHooks()
     {
         HookLoader::load($this);
+    }
+
+    /**
+     * @return void
+     */
+    private function loadBlocks()
+    {
+        BlockLoader::load($this);
     }
 
     public function config(string $identifier)
