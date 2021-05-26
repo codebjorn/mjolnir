@@ -138,7 +138,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
 
     /**
      * Get all items except for those with the specified keys.
-     * @param array|callable $keys
+     * @param array|callable|string|int $keys
      * @return $this
      */
     public function except($keys): Collection
