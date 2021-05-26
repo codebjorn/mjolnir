@@ -2,21 +2,27 @@
 
 namespace Mjolnir\Abstracts;
 
+use Mjolnir\App;
 use Mjolnir\Hooks\Group;
 use Mjolnir\Hooks\Hook;
 
 abstract class AbstractHook
 {
-    protected static $action = "add_action";
-    protected static $containerClass;
+    protected $action = "add_action";
+    protected $app;
+
+    public function __construct(App $app)
+    {
+        $this->app = $app;
+    }
 
     /**
      * @param string $tag
      * @return Group
      */
-    public static function group(string $tag): Group
+    public function group(string $tag): Group
     {
-        return new Group(static::$containerClass, static::$action, $tag);
+        return new Group($this->app, $this->action, $tag);
     }
 
     /**
@@ -25,18 +31,15 @@ abstract class AbstractHook
      * @param int $priority
      * @param int $args
      */
-    public static function add(string $tag, $function, int $priority = 10, int $args = 1)
+    public function add(string $tag, $function, int $priority = 10, int $args = 1)
     {
-        $hook = new Hook(static::$action, $tag, [
+        $hook = new Hook($this->action, $tag, [
             'function' => $function,
             'priority' => $priority,
             'args' => $args
         ]);
 
-        if (static::$containerClass) {
-            $container = call_user_func([static::$containerClass, 'getInstance']);
-            $container->extend('hooks')
-                ->addMethodCall('add', [$hook]);
-        }
+        $this->app->extend('hooks')
+            ->addMethodCall('add', [$hook]);
     }
 }

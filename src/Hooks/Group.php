@@ -2,21 +2,23 @@
 
 namespace Mjolnir\Hooks;
 
+use Mjolnir\App;
+
 class Group
 {
-    private $containerClass;
+    private $app;
     private $type;
     private $tag;
 
     /**
      * Group constructor.
-     * @param string $containerClass
+     * @param App $app
      * @param string $type
      * @param string $tag
      */
-    public function __construct(string $containerClass, string $type, string $tag)
+    public function __construct(App $app, string $type, string $tag)
     {
-        $this->containerClass = $containerClass;
+        $this->app = $app;
         $this->type = $type;
         $this->tag = $tag;
     }
@@ -35,8 +37,7 @@ class Group
             'args' => $args
         ]);
 
-        $container = call_user_func([$this->containerClass, 'getInstance']);
-        $container->extend('hooks')
+        $this->app->extend('hooks')
             ->addMethodCall('add', [$hook]);
 
         return $this;
