@@ -2,7 +2,7 @@
 
 namespace Mjolnir\Hooks;
 
-use Mjolnir\App;
+use Mjolnir\Abstracts\AbstractApp;
 
 class Group
 {
@@ -12,11 +12,11 @@ class Group
 
     /**
      * Group constructor.
-     * @param App $app
+     * @param AbstractApp $app
      * @param string $type
      * @param string $tag
      */
-    public function __construct(App $app, string $type, string $tag)
+    public function __construct(AbstractApp $app, string $type, string $tag)
     {
         $this->app = $app;
         $this->type = $type;

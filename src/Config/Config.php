@@ -2,7 +2,7 @@
 
 namespace Mjolnir\Config;
 
-use Mjolnir\App;
+use Mjolnir\Abstracts\AbstractApp;
 use Mjolnir\Support\Arr;
 use Mjolnir\Support\Collection;
 
@@ -10,11 +10,11 @@ class Config
 {
 
     /**
-     * @var App
+     * @var AbstractApp
      */
     private $container;
 
-    public function __construct(App $container)
+    public function __construct(AbstractApp $container)
     {
         $this->container = $container;
     }

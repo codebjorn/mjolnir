@@ -2,14 +2,14 @@
 
 namespace Mjolnir\Container;
 
-use Mjolnir\App;
+use Mjolnir\Abstracts\AbstractApp;
 use Mjolnir\Exceptions\ContainerResolverException;
 use Mjolnir\Support\Is;
 
 class ContainerResolver
 {
     /**
-     * @var App
+     * @var AbstractApp
      */
     protected $container;
     /**

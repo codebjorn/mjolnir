@@ -2,7 +2,6 @@
 
 namespace Mjolnir\Abstracts;
 
-use Mjolnir\App;
 use Mjolnir\Hooks\Group;
 use Mjolnir\Hooks\Hook;
 
@@ -11,7 +10,7 @@ abstract class AbstractHook
     protected $action = "add_action";
     protected $app;
 
-    public function __construct(App $app)
+    public function __construct(AbstractApp $app)
     {
         $this->app = $app;
     }

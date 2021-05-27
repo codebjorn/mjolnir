@@ -4,7 +4,7 @@ namespace Mjolnir\Providers;
 
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use Mjolnir\Abstracts\AbstractServiceProvider;
-use Mjolnir\App;
+use Mjolnir\Abstracts\AbstractApp;
 use Mjolnir\Contracts\ExceptionHandlerInterface;
 use Mjolnir\Contracts\ExceptionLoggerInterface;
 use Mjolnir\Exceptions\Support\Handler;
@@ -13,7 +13,7 @@ use Mjolnir\Exceptions\Support\Logger;
 class ExceptionServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface
 {
     /**
-     * @var App
+     * @var AbstractApp
      */
     protected $container;
 
