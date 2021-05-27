@@ -1,20 +1,14 @@
 <?php
 
-namespace Mjolnir;
+namespace Mjolnir\Abstracts;
 
 use League\Container\Container;
 use Mjolnir\Container\ContainerResolver;
 use Mjolnir\Gutenberg\BlockLoader;
 use Mjolnir\Hooks\HookLoader;
 use Mjolnir\Providers\ConfigServiceProvider;
-use Mjolnir\Providers\ExceptionServiceProvider;
-use Mjolnir\Providers\GutenbergServiceProvider;
-use Mjolnir\Providers\HooksServiceProvider;
-use Mjolnir\Providers\ViewServiceProvider;
-use Mjolnir\Support\Collection;
-use Mjolnir\Support\Is;
 
-abstract class App extends Container
+abstract class AbstractApp extends Container
 {
     /**
      * @var string
@@ -35,7 +29,6 @@ abstract class App extends Container
         $this->setPath($basePath);
 
         $this->addBaseShared();
-        $this->setTemplatesFolder();
         $this->addServiceProviders();
         $this->loadHooks();
         $this->loadBlocks();
@@ -72,10 +65,6 @@ abstract class App extends Container
     private function addServiceProviders()
     {
         $this->addServiceProvider(ConfigServiceProvider::class);
-        $this->addServiceProvider(ExceptionServiceProvider::class);
-        $this->addServiceProvider(ViewServiceProvider::class);
-        $this->addServiceProvider(HooksServiceProvider::class);
-        $this->addServiceProvider(GutenbergServiceProvider::class);
 
         $providers = $this->config('app.providers');
         if ($providers) {
@@ -84,38 +73,6 @@ abstract class App extends Container
             }
         }
     }
-
-    private function setTemplatesFolder()
-    {
-        Collection::make([
-            'index',
-            '404',
-            'archive',
-            'author',
-            'category',
-            'tag',
-            'taxonomy',
-            'date',
-            'embed',
-            'home',
-            'frontpage',
-            'privacypolicy',
-            'page',
-            'paged',
-            'search',
-            'single',
-            'singular',
-            'attachment'
-        ])->each(function ($type) {
-            add_filter("{$type}_template", function ($template, $type) {
-                $path = "{$this->basePath}/templates/{$type}.php";
-                if (Is::file($path)) {
-                    return $path;
-                }
-            }, 10, 2);
-        });
-    }
-
 
     /**
      * @return void
