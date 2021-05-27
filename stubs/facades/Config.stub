@@ -1,0 +1,15 @@
+<?php
+
+namespace {{namespace}}\Facades;
+
+use Mjolnir\Abstracts\AbstractFacade;
+use {{namespace}}\App;
+
+/**
+ *@method static get(string $identifier)
+ */
+class Config extends AbstractFacade
+{
+    protected static $app = App::class;
+    protected static $accessor = 'configAccessor';
+}

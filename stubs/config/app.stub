@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'templatesFolder' => {{templatesFolder}},
+
+    'path' => [
+        'base' => dirname(__DIR__),
+        'assets' => dirname(__DIR__) . "/assets"
+    ],
+
+    'uri' => [
+        'base' => {{baseURI}},
+        'assets' => {{baseAssetsURI}}
+    ],
+
+    'providers' => [
+        //Base Providers
+        \Mjolnir\Providers\ExceptionServiceProvider::class,
+        \Mjolnir\Providers\HooksServiceProvider::class,
+        \Mjolnir\Providers\ViewServiceProvider::class,
+        \Mjolnir\Providers\GutenbergServiceProvider::class,
+
+        //App Providers
+        \Wapu\Providers\AppServiceProvider::class
+    ]
+];
