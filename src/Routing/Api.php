@@ -5,9 +5,21 @@ namespace Mjolnir\Routing;
 class Api
 {
 
+    /**
+     * @var string
+     */
     private $namespace;
+    /**
+     * @var string
+     */
     private $route;
+    /**
+     * @var array|null
+     */
     private $args;
+    /**
+     * @var bool
+     */
     private $override;
 
     /**

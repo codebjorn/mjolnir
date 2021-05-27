@@ -2,18 +2,26 @@
 
 namespace Mjolnir\Abstracts;
 
+use Mjolnir\Traits\AppSingleton;
 use RuntimeException;
 
 abstract class AbstractFacade
 {
 
+    /**
+     * @var object
+     */
     protected static $resolvedInstance;
+    /**
+     * @var AbstractApp|AppSingleton
+     */
     protected static $app;
+    /**
+     * @var string
+     */
     protected static $accessor;
 
     /**
-     * Resolve the facade root instance from the container.
-     *
      * @param string|object|mixed $name
      * @return mixed
      */
@@ -36,12 +44,9 @@ abstract class AbstractFacade
 
 
     /**
-     * Handle dynamic, static calls to the object.
-     *
      * @param string $method
      * @param array $args
      * @return mixed
-     *
      * @throws RuntimeException
      */
     public static function __callStatic(string $method, array $args)

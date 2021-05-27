@@ -46,7 +46,7 @@ class Taxonomy extends AbstractCustomContent
      * @param array $postTypes
      * @return $this
      */
-    public function postTypes(array $postTypes)
+    public function postTypes(array $postTypes): Taxonomy
     {
         $this->postTypes = $postTypes;
         return $this;

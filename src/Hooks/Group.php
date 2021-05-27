@@ -6,8 +6,17 @@ use Mjolnir\Abstracts\AbstractApp;
 
 class Group
 {
+    /**
+     * @var AbstractApp
+     */
     private $app;
+    /**
+     * @var string
+     */
     private $type;
+    /**
+     * @var string
+     */
     private $tag;
 
     /**

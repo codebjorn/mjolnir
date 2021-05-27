@@ -43,7 +43,7 @@ abstract class AbstractQuery
      * @return array|null
      * @throws ReflectionException
      */
-    protected function updateArgs($concrete, $object, ...$arguments)
+    protected function updateArgs($concrete, $object, ...$arguments): ?array
     {
         if (Is::obj($object)) {
             $newArgs = $object->toArray();

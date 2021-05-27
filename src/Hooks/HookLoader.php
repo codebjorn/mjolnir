@@ -2,11 +2,20 @@
 
 namespace Mjolnir\Hooks;
 
+use Mjolnir\Abstracts\AbstractApp;
+
 class HookLoader
 {
     const HOOKS = ['actions', 'filters'];
+    /**
+     * @var AbstractApp
+     */
     private $container;
 
+    /**
+     * HookLoader constructor.
+     * @param $container
+     */
     public function __construct($container)
     {
         $this->setContainer($container);
@@ -14,16 +23,26 @@ class HookLoader
         $this->enableHooks();
     }
 
-    public static function load($container)
+    /**
+     * @param $container
+     * @return static
+     */
+    public static function load($container): HookLoader
     {
         return new static($container);
     }
 
+    /**
+     * @param $container
+     */
     public function setContainer($container)
     {
         $this->container = $container;
     }
 
+    /**
+     *
+     */
     private function requireFiles()
     {
         $path = $this->container->getPath();
@@ -35,6 +54,9 @@ class HookLoader
         }
     }
 
+    /**
+     *
+     */
     private function enableHooks()
     {
         $hooks = $this->container->get('hooks');

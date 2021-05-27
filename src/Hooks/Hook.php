@@ -4,8 +4,17 @@ namespace Mjolnir\Hooks;
 
 class Hook
 {
+    /**
+     * @var string
+     */
     private $name;
+    /**
+     * @var string
+     */
     private $tag;
+    /**
+     * @var array
+     */
     private $arguments;
 
     /**

@@ -28,7 +28,8 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
         $this->setShares();
     }
 
-    private function setShares() {
+    private function setShares()
+    {
         $this->container->share('view', View::class)
             ->addArgument($this->container->getPath());
     }

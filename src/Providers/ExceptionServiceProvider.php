@@ -25,9 +25,6 @@ class ExceptionServiceProvider extends AbstractServiceProvider implements Bootab
         //
     }
 
-    /**
-     *
-     */
     public function boot()
     {
         $this->container->add(ExceptionLoggerInterface::class, Logger::class);
@@ -37,9 +34,6 @@ class ExceptionServiceProvider extends AbstractServiceProvider implements Bootab
         $this->runExceptionHandler();
     }
 
-    /**
-     *
-     */
     private function runExceptionHandler()
     {
         $this->container->get(ExceptionHandlerInterface::class);

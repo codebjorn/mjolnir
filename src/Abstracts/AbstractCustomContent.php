@@ -4,7 +4,13 @@ namespace Mjolnir\Abstracts;
 
 abstract class AbstractCustomContent
 {
+    /**
+     * @var string
+     */
     protected $name;
+    /**
+     * @var array|bool[]
+     */
     protected $arguments;
 
     /**

@@ -97,6 +97,10 @@ class Post
      */
     public $filter;
 
+    /**
+     * Post constructor.
+     * @param int|null $id
+     */
     public function __construct(int $id = null)
     {
         $post = get_post($id);
@@ -125,11 +129,18 @@ class Post
         $this->filter = $post->filter;
     }
 
+    /**
+     * @param int|null $id
+     * @return Post
+     */
     public static function get(int $id = null): Post
     {
         return new static($id);
     }
 
+    /**
+     * @return Post
+     */
     public static function current(): Post
     {
         return new static(get_the_ID());

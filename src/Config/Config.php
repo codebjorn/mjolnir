@@ -19,11 +19,19 @@ class Config
         $this->container = $container;
     }
 
+    /**
+     * @param string $identifier
+     * @return mixed|null
+     */
     public function get(string $identifier)
     {
         return $this->resolveIdentifier($identifier);
     }
 
+    /**
+     * @param string $identifier
+     * @return mixed|null
+     */
     private function resolveIdentifier(string $identifier)
     {
         $keys = Collection::make(explode('.', $identifier));

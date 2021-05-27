@@ -33,7 +33,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @param array $items
      * @return static
      */
-    public static function make(array $items = [])
+    public static function make(array $items = []): Collection
     {
         return new static($items);
     }

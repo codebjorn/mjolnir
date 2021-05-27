@@ -9,12 +9,20 @@ trait AppSingleton
      */
     protected static $instance;
 
+    /**
+     * AppSingleton constructor.
+     * @param null $basePath
+     */
     public function __construct($basePath = null)
     {
         $this->setInstance();
         parent::__construct($basePath);
     }
 
+    /**
+     * @param null $basePath
+     * @return static
+     */
     public static function boot($basePath = null): self
     {
         return new static($basePath);
@@ -32,6 +40,9 @@ trait AppSingleton
         return self::$instance;
     }
 
+    /**
+     *
+     */
     public function setInstance()
     {
         self::$instance = $this;

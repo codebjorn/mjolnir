@@ -10,7 +10,13 @@ class ConfigFactory
 {
     use Factoryable;
 
+    /**
+     * @var string
+     */
     private $path;
+    /**
+     * @var array
+     */
     private $instances = [];
 
     /**

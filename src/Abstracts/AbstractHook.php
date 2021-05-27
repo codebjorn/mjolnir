@@ -7,9 +7,19 @@ use Mjolnir\Hooks\Hook;
 
 abstract class AbstractHook
 {
+    /**
+     * @var string
+     */
     protected $action = "add_action";
+    /**
+     * @var AbstractApp
+     */
     protected $app;
 
+    /**
+     * AbstractHook constructor.
+     * @param AbstractApp $app
+     */
     public function __construct(AbstractApp $app)
     {
         $this->app = $app;

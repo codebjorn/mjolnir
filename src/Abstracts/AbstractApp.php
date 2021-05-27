@@ -90,6 +90,10 @@ abstract class AbstractApp extends Container
         BlockLoader::load($this);
     }
 
+    /**
+     * @param string $identifier
+     * @return mixed
+     */
     public function config(string $identifier)
     {
         return $this->get('configAccessor')

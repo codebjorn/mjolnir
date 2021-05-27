@@ -26,7 +26,7 @@ class Theme
     /**
      * @return ThemeMod
      */
-    public static function mod()
+    public static function mod(): ThemeMod
     {
         return new ThemeMod();
     }
