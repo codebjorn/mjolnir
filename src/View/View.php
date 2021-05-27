@@ -9,12 +9,13 @@ class View extends BladeOne
 {
     /**
      * View constructor.
-     * @param string $appPath
+     * @param string $templatePath
+     * @param string $compiledPath
      */
-    public function __construct(string $appPath)
+    public function __construct(string $templatePath, string $compiledPath)
     {
-        $this->templatePath = [$appPath . '/resources/views'];
-        $this->compiledPath = wp_upload_dir()['basedir'] . '/cache/views';
+        $this->templatePath = [$templatePath];
+        $this->compiledPath = $compiledPath;
     }
 
     /**

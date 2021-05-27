@@ -31,7 +31,10 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
     private function setShares()
     {
         $this->container->share('view', View::class)
-            ->addArgument($this->container->getPath());
+            ->addArguments([
+                'templatePath' => $this->container->config('app.view.templatePath'),
+                'compiledPath' => $this->container->config('app.view.compiledPath'),
+            ]);
     }
 
     private function setTemplatesFolder()
@@ -59,7 +62,7 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
             $this->container->get('filter')
                 ->add("{$type}_template_hierarchy", function ($templates) {
                     return Collection::make($templates)->map(function ($template) {
-                        $templatesFolder = $this->container->config('app.templatesFolder') ?? "templates";
+                        $templatesFolder = $this->container->config('app.view.templatesFolder') ?? "templates";
                         return "{$templatesFolder}/{$template}";
                     })->toArray();
                 });
