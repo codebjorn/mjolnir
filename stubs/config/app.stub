@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'templatesFolder' => {{templatesFolder}},
-
     'path' => [
         'base' => dirname(__DIR__),
         'assets' => dirname(__DIR__) . "/assets"
@@ -11,6 +9,12 @@ return [
     'uri' => [
         'base' => {{baseURI}},
         'assets' => {{baseAssetsURI}}
+    ],
+
+    'view' => [
+        'templatesFolder' => {{templatesFolder}},
+        'templatePath' => {{templatePath}},
+        'compiledPath' => {{compiledPath}},
     ],
 
     'providers' => [
