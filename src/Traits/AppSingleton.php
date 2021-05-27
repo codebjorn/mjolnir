@@ -1,4 +1,5 @@
 <?php
+
 namespace Mjolnir\Traits;
 
 trait AppSingleton
@@ -14,9 +15,9 @@ trait AppSingleton
         parent::__construct($basePath);
     }
 
-    public function setInstance()
+    public static function boot($basePath = null): self
     {
-        self::$instance = $this;
+        return new static($basePath);
     }
 
     /**
@@ -29,5 +30,10 @@ trait AppSingleton
         }
 
         return self::$instance;
+    }
+
+    public function setInstance()
+    {
+        self::$instance = $this;
     }
 }
