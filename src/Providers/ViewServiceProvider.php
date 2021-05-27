@@ -56,11 +56,13 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
             'singular',
             'attachment'
         ])->each(function ($type) {
-            add_filter("{$type}_template_hierarchy", function ($templates) {
-                return Collection::make($templates)->map(function ($template) {
-                    return "templates/{$template}";
-                })->toArray();
-            });
+            $this->container->get('filter')
+                ->add("{$type}_template_hierarchy", function ($templates) {
+                    return Collection::make($templates)->map(function ($template) {
+                        $templatesFolder = $this->container->config('app.templatesFolder') ?? "templates";
+                        return "{$templatesFolder}/{$template}";
+                    })->toArray();
+                });
         });
     }
 }
