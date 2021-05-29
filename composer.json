@@ -15,7 +15,7 @@
             "role": "Developer"
         }
     ],
-    "minimum-stability": "RC",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=7.1",
         "eftec/bladeone": "^3.52",
