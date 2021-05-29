@@ -39,13 +39,13 @@ class Block
      */
     public function add(string $namespace, string $name, string $path = null): self
     {
-        $path = $path ?? "{$this->path}/blocks/{$name}";
+        $path = $path ?? "{$this->path}/{$name}";
         $attributes = json_decode(file_get_contents("/{$path}/data/attributes.json"), true);
 
         $this->register("{$namespace}/{$name}", [
-            'render_callback' => function ($attributes) use ($path) {
+            'render_callback' => function ($attributes) use ($name, $path) {
                 $attributes = (object)$attributes;
-                return $this->view->runString(file_get_contents("{$path}/view/block.blade.php"), ['attributes' => $attributes]);
+                return $this->view->run("{$name}.view.block", ['attributes' => $attributes]);
             },
             'attributes' => $attributes,
         ]);

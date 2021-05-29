@@ -9,12 +9,12 @@ class View extends BladeOne
 {
     /**
      * View constructor.
-     * @param string $templatePath
+     * @param array $templatePaths
      * @param string $compiledPath
      */
-    public function __construct(string $templatePath, string $compiledPath)
+    public function __construct(array $templatePaths, string $compiledPath)
     {
-        $this->templatePath = [$templatePath];
+        $this->templatePath = $templatePaths;
         $this->compiledPath = $compiledPath;
     }
 

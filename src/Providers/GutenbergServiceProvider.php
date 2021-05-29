@@ -24,6 +24,9 @@ class GutenbergServiceProvider extends AbstractServiceProvider implements Bootab
     public function boot()
     {
         $this->container->share('block', Block::class)
-            ->addArguments(['view' => $this->container->get('view'), 'path' => $this->container->getPath()]);
+            ->addArguments([
+                'view' => $this->container->get('view'),
+                'path' => $this->container->getPath() . "/{$this->container->config('app.blocks.folder')}"
+            ]);
     }
 }

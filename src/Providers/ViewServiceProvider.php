@@ -32,7 +32,10 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
     {
         $this->container->share('view', View::class)
             ->addArguments([
-                'templatePath' => $this->container->config('app.view.templatePath'),
+                'templatePath' => [
+                    $this->container->config('app.view.templatePath'),
+                    $this->container->getPath() . "/{$this->container->config('app.blocks.folder')}"
+                ],
                 'compiledPath' => $this->container->config('app.view.compiledPath'),
             ]);
     }
