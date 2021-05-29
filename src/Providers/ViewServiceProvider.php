@@ -43,11 +43,18 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
             ->addArguments([
                 'templatePath' => $templatePath,
                 'compiledPath' => $this->container->config('app.view.compiledPath'),
+                'baseUrl' => $this->container->config('app.uri.base')
             ]);
     }
 
     private function setTemplatesFolder()
     {
+        $templatesFolder = $this->container->config('app.view.folder');
+
+        if (!$templatesFolder) {
+            return;
+        }
+
         Collection::make([
             'index',
             '404',
@@ -67,11 +74,10 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
             'single',
             'singular',
             'attachment'
-        ])->each(function ($type) {
+        ])->each(function ($type) use ($templatesFolder) {
             $this->container->get('filter')
-                ->add("{$type}_template_hierarchy", function ($templates) {
-                    return Collection::make($templates)->map(function ($template) {
-                        $templatesFolder = $this->container->config('app.view.templatesFolder') ?? "templates";
+                ->add("{$type}_template_hierarchy", function ($templates) use ($templatesFolder) {
+                    return Collection::make($templates)->map(function ($template) use ($templatesFolder) {
                         return "{$templatesFolder}/{$template}";
                     })->toArray();
                 });
