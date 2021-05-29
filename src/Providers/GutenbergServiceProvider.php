@@ -23,10 +23,17 @@ class GutenbergServiceProvider extends AbstractServiceProvider implements Bootab
      */
     public function boot()
     {
+        $blocksSSR = $this->container->config('app.blocks.useSSR') ?? true;
+        $blocksFolder = $this->container->config('app.blocks.folder') ?? "blocks";
+
+        if (!$blocksSSR) {
+            return;
+        }
+
         $this->container->share('block', Block::class)
             ->addArguments([
                 'view' => $this->container->get('view'),
-                'path' => $this->container->getPath() . "/{$this->container->config('app.blocks.folder')}"
+                'path' => $this->container->getPath() . "/{$blocksFolder}"
             ]);
     }
 }

@@ -6,6 +6,7 @@ use Exception;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use Mjolnir\Abstracts\AbstractServiceProvider;
 use Mjolnir\Abstracts\AbstractApp;
+use Mjolnir\Support\Arr;
 use Mjolnir\Support\Collection;
 use Mjolnir\View\View;
 
@@ -30,12 +31,17 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
 
     private function setShares()
     {
+        $blocksSSR = $this->container->config('app.blocks.useSSR') ?? true;
+        $blocksFolder = $this->container->config('app.blocks.folder') ?? "blocks";
+        $templatePath = [$this->container->config('app.view.templatePath')];
+
+        if ($blocksSSR) {
+            $templatePath = Arr::prepend($templatePath, $this->container->getPath() . "/{$blocksFolder}");
+        }
+
         $this->container->share('view', View::class)
             ->addArguments([
-                'templatePath' => [
-                    $this->container->config('app.view.templatePath'),
-                    $this->container->getPath() . "/{$this->container->config('app.blocks.folder')}"
-                ],
+                'templatePath' => $templatePath,
                 'compiledPath' => $this->container->config('app.view.compiledPath'),
             ]);
     }
