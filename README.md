@@ -1,6 +1,4 @@
-<p style="text-align: center">
-<img width="80px" src="https://raw.githubusercontent.com/codebjorn/mjolnir/main/logo.png?token=AMTPZ3F2NFGQAOABPQR5Q7TAWIDWU"  alt=""/>
-</p>
+<img width="120" src="https://raw.githubusercontent.com/codebjorn/mjolnir/main/logo.png?token=AMTPZ3F6NAXEMZEZBYI2Q3LAWKWO4" />
 
 # Mjölnir, WordPress Utility Framework
 
