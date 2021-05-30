@@ -2,7 +2,7 @@
 
 # Mjölnir, WordPress Utility Framework
 
-[![Generic badge](https://img.shields.io/badge/Version-0.0.1-<COLOR>.svg)](https://shields.io/)
+[![GitHub release](https://img.shields.io/github/release/codebjorn/mjolnir.svg)](https://github.com/codebjorn/mjolnir/releases)
 [![Generic badge](https://img.shields.io/badge/Stability-Alpha-<COLOR>.svg)](https://shields.io/)
 
 Mjölnir is small utility framework that gives utilities and possibilities to create WordPress plugins & themes using
