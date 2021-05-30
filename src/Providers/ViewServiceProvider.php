@@ -49,7 +49,7 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
 
     private function setTemplatesFolder()
     {
-        $templatesFolder = $this->container->config('app.view.folder');
+        $templatesFolder = $this->container->config('theme.templates.folder');
 
         if (!$templatesFolder) {
             return;
