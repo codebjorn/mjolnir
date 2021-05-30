@@ -8,7 +8,7 @@
     "homepage": "https://github.com/quotesun/mjolnir",
     "license": "MIT",
     "type": "library",
-    "version": "dev-main",
+    "version": "0.1.0",
     "authors": [
         {
             "name": "Dorin Lazar",
