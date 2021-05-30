@@ -1,9 +1,11 @@
-<img width="120" src="https://i.imgur.com/pBeE3rO.png" />
+<p style="text-align: center"> 
+<img width="150" src="https://i.imgur.com/pBeE3rO.png" />
+</p>
 
 # Mjölnir, WordPress Utility Framework
 
 [![GitHub release](https://img.shields.io/github/v/release/codebjorn/mjolnir?include_prereleases)](https://github.com/codebjorn/mjolnir/releases)
-[![Generic badge](https://img.shields.io/badge/Stability-Alpha-<COLOR>.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/Stability-Alpha-orange.svg)](https://shields.io/)
 
 Mjölnir is small utility framework that gives utilities and possibilities to create WordPress plugins & themes using
 best of PHP. This package is compliant with PSR-1, PSR-2, PSR-4 and PSR-11.
