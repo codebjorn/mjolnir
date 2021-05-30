@@ -285,7 +285,7 @@ If you discover any security related issues, please email quotesun@gmail.com ins
 
 ## Credits
 
-- [Dorin Lazar](https://github.com/quotesun)
+- [Dorin Lazar](https://github.com/codebjorn)
 - [All Contributors](../../contributors)
 
 ## License
