@@ -1,8 +1,8 @@
-<img width="120" src="https://raw.githubusercontent.com/codebjorn/mjolnir/main/logo.png?token=AMTPZ3F6NAXEMZEZBYI2Q3LAWKWO4" />
+<img width="120" src="https://i.imgur.com/pBeE3rO.png" />
 
 # Mjölnir, WordPress Utility Framework
 
-[![Generic badge](https://img.shields.io/badge/Version-0.0.1-<COLOR>.svg)](https://shields.io/)
+[![GitHub release](https://img.shields.io/github/release/codebjorn/mjolnir.svg)](https://github.com/codebjorn/mjolnir/releases)
 [![Generic badge](https://img.shields.io/badge/Stability-Alpha-<COLOR>.svg)](https://shields.io/)
 
 Mjölnir is small utility framework that gives utilities and possibilities to create WordPress plugins & themes using
